@@ -30,6 +30,34 @@ body {
     color: var(--dark-color);
     background-color: var(--light-color);
 }
+.image-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .image-flow {
+    position: relative;
+    display: inline-block;
+  }
+
+  .image-flow img {
+    width: 250px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .arrow-right {
+    position: absolute;
+    top: 50%;
+    right: -25px;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: #333;
+  }
 
 .container {
     width: 100%;
