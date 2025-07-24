@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Challenge Fase 5 - Scale & Innovation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #8b5cf6;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover {
+            color: #8b5cf6;
+        }
+
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero .highlight {
+            color: #ffd700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .section {
+            background: white;
+            margin: 2rem 0;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            color: #8b5cf6;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: #faf5ff;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid #8b5cf6;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #8b5cf6;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            color: white;
+            border-radius: 15px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .global-map {
+            background: linear-gradient(135deg, #faf5ff, #f3e8ff);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .map-regions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .region {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .region:hover {
+            border-color: #8b5cf6;
+            transform: translateY(-3px);
+        }
+
+        .region-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .region-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .region-desc {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .metrics-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .metrics-table th {
+            background: #8b5cf6;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .metrics-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .metrics-table tr:hover {
+            background: #faf5ff;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            margin: 2rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #8b5cf6;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 2rem 0;
+            padding: 0 2rem;
+        }
+
+        .timeline-item:nth-child(odd) {
+            text-align: right;
+            padding-right: calc(50% + 2rem);
+        }
+
+        .timeline-item:nth-child(even) {
+            text-align: left;
+            padding-left: calc(50% + 2rem);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 1rem;
+            width: 16px;
+            height: 16px;
+            background: #8b5cf6;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px #8b5cf6;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-title {
+            color: #8b5cf6;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .vision-2035 {
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .vision-2035 h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .vision-2035 p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .impact-goals {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .impact-goal {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .goal-number {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .goal-desc {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .section {
+                padding: 2rem;
+                margin: 1rem 0;
+            }
+
+            .timeline::before {
+                left: 2rem;
+            }
+
+            .timeline-item {
+                padding-left: 4rem !important;
+                padding-right: 1rem !important;
+                text-align: left !important;
+            }
+
+            .timeline-dot {
+                left: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="../" class="logo">Tech Challenge Grupo 28 (84)</a>
+                <ul class="nav-links">
+                    <li><a href="#intro">Introdução</a></li>
+                    <li><a href="#escalabilidade">Escalabilidade</a></li>
+                    <li><a href="#sustentabilidade">Sustentabilidade</a></li>
+                    <li><a href="#internacional">Internacional</a></li>
+                    <li><a href="#ecossistema">Ecossistema</a></li>
+                    <li><a href="#governanca">Governança</a></li>
+                    <li><a href="#cronograma">Cronograma</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="intro">
+        <div class="container">
+            <h1>Tech Challenge <span class="highlight">Fase 5</span></h1>
+            <p>Scale & Innovation - Escalabilidade, inovação contínua e sustentabilidade</p>
+            <a href="../" class="back-btn">← Voltar ao Início</a>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Escalabilidade Técnica e Organizacional -->
+        <section class="section" id="escalabilidade">
+            <h2>🚀 Escalabilidade Técnica e Organizacional</h2>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">Global</div>
+                    <div class="stat-label">CDN Network</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">Multi</div>
+                    <div class="stat-label">Region Database</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">K8s</div>
+                    <div class="stat-label">Container Orchestra</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">95%+</div>
+                    <div class="stat-label">Cache Hit Ratio</div>
+                </div>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>🌐 Infraestrutura Multi-Regional</h3>
+                    <p><strong>Global CDN:</strong> CloudFlare Enterprise com 200+ pontos<br>
+                    <strong>Database Distribuído:</strong> PostgreSQL + Citus sharding<br>
+                    <strong>Microservices:</strong> Service mesh com Istio<br>
+                    <strong>Auto-scaling:</strong> Baseado em métricas de negócio</p>
+                </div>
+                <div class="card">
+                    <h3>⚡ Performance Otimizada</h3>
+                    <p><strong>Cache Multi-layer:</strong> Redis Cluster + Varnish<br>
+                    <strong>API Gateway:</strong> Kong Enterprise com rate limiting<br>
+                    <strong>Real-time Processing:</strong> Kafka + Flink streaming<br>
+                    <strong>Database Optimization:</strong> Read replicas regionais</p>
+                </div>
+                <div class="card">
+                    <h3>👥 Estrutura Organizacional</h3>
+                    <p><strong>Squad Model:</strong> Spotify Model com tribes autônomas<br>
+                    <strong>Career Progression:</strong> IC track paralelo ao Management<br>
+                    <strong>Remote-First:</strong> Cultura de documentação primeiro<br>
+                    <strong>D&I Program:</strong> 50% diversidade até 2026</p>
+                </div>
+                <div class="card">
+                    <h3>🔬 Capacidade de Inovação</h3>
+                    <p><strong>Innovation Labs:</strong> 10% budget para experimentação<br>
+                    <strong>Hackathons:</strong> Trimestrais com temas específicos<br>
+                    <strong>University Partnerships:</strong> Pesquisa colaborativa<br>
+                    <strong>Open Source:</strong> Contribuições estratégicas</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sustentabilidade e Impacto Social -->
+        <section class="section" id="sustentabilidade">
+            <h2>🌱 Sustentabilidade e Impacto Social</h2>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>🌍 Environmental (Ambiental)</h3>
+                    <p><strong>Carbon Neutral 2027:</strong> Energia renovável + compensação<br>
+                    <strong>Green Software:</strong> Otimização de eficiência energética<br>
+                    <strong>Paperless Operations:</strong> Digitalização completa<br>
+                    <strong>Sustainable Supply Chain:</strong> Fornecedores certificados</p>
+                </div>
+                <div class="card">
+                    <h3>👥 Social (Social)</h3>
+                    <p><strong>Digital Inclusion:</strong> 10K idosos vulneráveis até 2026<br>
+                    <strong>Health Outcomes:</strong> Estudos longitudinais rigorosos<br>
+                    <strong>Accessibility First:</strong> Além de compliance WCAG<br>
+                    <strong>Community Building:</strong> Combate ao isolamento social</p>
+                </div>
+                <div class="card">
+                    <h3>⚖️ Governance (Governança)</h3>
+                    <p><strong>Transparent Reporting:</strong> Relatórios trimestrais auditados<br>
+                    <strong>Ethical AI Committee:</strong> Governança de algoritmos<br>
+                    <strong>Privacy by Design:</strong> Controle total do usuário<br>
+                    <strong>Stakeholder Engagement:</strong> Feedback estruturado</p>
+                </div>
+                <div class="card">
+                    <h3>📊 Medição de Impacto</h3>
+                    <p><strong>Health Outcomes:</strong> 25% redução hospitalizações<br>
+                    <strong>Quality of Life:</strong> 35% aumento independência<br>
+                    <strong>Family Impact:</strong> 40% redução stress cuidadores<br>
+                    <strong>Economic Impact:</strong> Análise custo-efetividade</p>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">25%</div>
+                    <div class="stat-label">Redução Hospitalizações</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">40%</div>
+                    <div class="stat-label">Melhoria Aderência</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">35%</div>
+                    <div class="stat-label">Aumento Independência</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">R$ 5B</div>
+                    <div class="stat-label">Economia Saúde (5 anos)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Internacionalização -->
+        <section class="section" id="internacional">
+            <h2>🌎 Estratégia de Internacionalização</h2>
+            
+            <div class="global-map">
+                <h3 style="color: #8b5cf6; margin-bottom: 2rem;">Expansão Global Estratégica</h3>
+                <div class="map-regions">
+                    <div class="region">
+                        <div class="region-icon">🇦🇷</div>
+                        <div class="region-name">Tier 1 - América Latina</div>
+                        <div class="region-desc">Argentina, México, Chile<br>Ano 1-2 • 22M+ idosos</div>
+                    </div>
+                    <div class="region">
+                        <div class="region-icon">🇵🇹</div>
+                        <div class="region-name">Tier 2 - Mercados Desenvolvidos</div>
+                        <div class="region-desc">Portugal, Espanha, Itália<br>Ano 3-4 • 25M+ idosos</div>
+                    </div>
+                    <div class="region">
+                        <div class="region-icon">🇮🇳</div>
+                        <div class="region-name">Tier 3 - Mercados Emergentes</div>
+                        <div class="region-desc">Índia, China, Filipinas<br>Ano 5+ • 400M+ idosos</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>🎯 Estratégia de Entrada</h3>
+                    <p><strong>Partnership-First:</strong> Parcerias com players locais<br>
+                    <strong>Localization:</strong> Idioma, cultura, regulamentações<br>
+                    <strong>Regulatory Compliance:</strong> Certificações locais<br>
+                    <strong>Pricing Adaptation:</strong> Poder aquisitivo regional</p>
+                </div>
+                <div class="card">
+                    <h3>🏥 Adaptação por Mercado</h3>
+                    <p><strong>Cultural Research:</strong> Etnografia de comportamentos<br>
+                    <strong>Healthcare Integration:</strong> Sistemas locais de saúde<br>
+                    <strong>Medical Guidelines:</strong> Protocolos clínicos regionais<br>
+                    <strong>Payment Methods:</strong> Preferências locais</p>
+                </div>
+                <div class="card">
+                    <h3>🌐 Modelo Operacional</h3>
+                    <p><strong>Hub and Spoke:</strong> Brasil como hub global<br>
+                    <strong>Local Talent:</strong> Contratação regional estratégica<br>
+                    <strong>Multi-tenancy:</strong> Plataforma preparada globalmente<br>
+                    <strong>Data Residency:</strong> Compliance com regulamentações</p>
+                </div>
+                <div class="card">
+                    <h3>📈 Projeção de Crescimento</h3>
+                    <p><strong>2025-2027:</strong> América Latina consolidada<br>
+                    <strong>2027-2030:</strong> 10 países, 2M usuários<br>
+                    <strong>2030-2035:</strong> Presença global, 10M usuários<br>
+                    <strong>Revenue Target:</strong> R$ 1B ARR até 2035</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ecossistema de Parceiros -->
+        <section class="section" id="ecossistema">
+            <h2>🤝 Ecossistema de Parceiros e Plataforma Aberta</h2>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>🔌 API-First Platform</h3>
+                    <p><strong>Developer Platform:</strong> APIs públicas documentadas<br>
+                    <strong>Partner APIs:</strong> Healthcare, Pharma, Insurance, Tech<br>
+                    <strong>App Marketplace:</strong> Aplicações terceiras certificadas<br>
+                    <strong>Revenue Sharing:</strong> Modelo sustentável para parceiros</p>
+                </div>
+                <div class="card">
+                    <h3>🚀 Innovation Partnership</h3>
+                    <p><strong>Academic Network:</strong> 20+ universidades globais<br>
+                    <strong>Startup Accelerator:</strong> Programa de aceleração focado<br>
+                    <strong>Corporate VC:</strong> Investimentos estratégicos<br>
+                    <strong>Open Innovation:</strong> Challenges e grants de pesquisa</p>
+                </div>
+                <div class="card">
+                    <h3>🏗️ Partner Enablement</h3>
+                    <p><strong>Technical Support:</strong> Equipe dedicada para integração<br>
+                    <strong>Business Framework:</strong> Processo estruturado de onboarding<br>
+                    <strong>Joint Go-to-Market:</strong> Co-marketing e co-selling<br>
+                    <strong>Certification Program:</strong> Desenvolvedores certificados</p>
+                </div>
+                <div class="card">
+                    <h3>💡 Open Source Strategy</h3>
+                    <p><strong>Community Building:</strong> Contribuições estratégicas<br>
+                    <strong>Innovation Challenges:</strong> Competições globais<br>
+                    <strong>Research Grants:</strong> Funding para pesquisadores<br>
+                    <strong>Component Liberation:</strong> Bibliotecas não-core abertas</p>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Parceiros Integrados</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100</div>
+                    <div class="stat-label">Startups Aceleradas</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">75</div>
+                    <div class="stat-label">Patentes Registradas</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">22%</div>
+                    <div class="stat-label">Investimento em R&D</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Governança e Visão -->
+        <section class="section" id="governanca">
+            <h2>⚖️ Governança Corporativa e Visão de Longo Prazo</h2>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>👥 Board Evolution</h3>
+                    <p><strong>Independent Board:</strong> Expertise diversificada<br>
+                    <strong>Healthcare Executive:</strong> Ex-CEO saúde digital<br>
+                    <strong>Technology Leader:</strong> CTO empresa global<br>
+                    <strong>Advisory Board:</strong> Especialistas em gerontologia</p>
+                </div>
+                <div class="card">
+                    <h3>🛡️ Risk Management</h3>
+                    <p><strong>Enterprise Framework:</strong> Gestão abrangente de riscos<br>
+                    <strong>Technology Risks:</strong> Cybersecurity, privacy, availability<br>
+                    <strong>Market Risks:</strong> Competição, demografia, economia<br>
+                    <strong>Crisis Management:</strong> Planos detalhados por cenário</p>
+                </div>
+                <div class="card">
+                    <h3>🎯 Vision 2035</h3>
+                    <p><strong>Global Platform:</strong> Dominante em gerontecnologia<br>
+                    <strong>10M Usuários:</strong> Impacto em escala global<br>
+                    <strong>R$ 1B ARR:</strong> Modelo de negócio sustentável<br>
+                    <strong>Transformational Impact:</strong> Mudança social mensurável</p>
+                </div>
+                <div class="card">
+                    <h3>🌟 Legacy Goals</h3>
+                    <p><strong>Cost Reduction:</strong> 15% custos globais de saúde<br>
+                    <strong>Independent Living:</strong> 50M idosos impactados<br>
+                    <strong>Global Standards:</strong> Tecnologia assistiva ética<br>
+                    <strong>Policy Influence:</strong> 50 países com novas políticas</p>
+                </div>
+            </div>
+
+            <div class="vision-2035">
+                <h3>🌟 Visão 2035</h3>
+                <p>"Ser a plataforma global que permite a toda pessoa envelhecer com dignidade, independência e qualidade de vida através da tecnologia."</p>
+                
+                <div class="impact-goals">
+                    <div class="impact-goal">
+                        <div class="goal-number">50M</div>
+                        <div class="goal-desc">Idosos vivendo independentemente</div>
+                    </div>
+                    <div class="impact-goal">
+                        <div class="goal-number">15%</div>
+                        <div class="goal-desc">Redução custos globais saúde</div>
+                    </div>
+                    <div class="impact-goal">
+                        <div class="goal-number">50</div>
+                        <div class="goal-desc">Países com políticas influenciadas</div>
+                    </div>
+                    <div class="impact-goal">
+                        <div class="goal-number">Global</div>
+                        <div class="goal-desc">Padrão tecnologia assistiva</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cronograma e Métricas -->
+        <section class="section" id="cronograma">
+            <h2>📅 Cronograma de Implementação</h2>
+            
+            <h3 style="text-align: center; margin: 2rem 0; color: #8b5cf6;">Roadmap Estratégico - 24 Meses</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Ano 1 Q1 - Infrastructure & Organization</div>
+                        <p>Microserviços, multi-region, squads autônomas, innovation lab</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Ano 1 Q2 - Platform & Partnerships</div>
+                        <p>Developer platform, APIs públicas, integrações terceiros, sustentabilidade</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Ano 1 Q3 - International Expansion</div>
+                        <p>Argentina piloto, compliance global, primeira aquisição, ESG reporting</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Ano 1 Q4 - Innovation & Growth</div>
+                        <p>3 features inovadoras, México, corporate VC, Series B funding</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Ano 2 Q1 - Platform Maturity</div>
+                        <p>App marketplace, 50+ integrações, Chile/Portugal, ISO 27001</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Ano 2 Q2 - Market Leadership</div>
+                        <p>1M usuários globais, liderança 3 mercados, startup accelerator</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Ano 2 Q3 - Innovation Leadership</div>
+                        <p>10+ patentes, 20 universidades, Espanha/Itália, prep Ásia</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Ano 2 Q4 - Sustainable Growth</div>
+                        <p>R$ 300M ARR, carbon neutral, 1M vidas impactadas</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="text-align: center; margin: 2rem 0; color: #8b5cf6;">Métricas de Sucesso Estratégicas</h3>
+            <table class="metrics-table">
+                <thead>
+                    <tr>
+                        <th>Métrica</th>
+                        <th>Ano 1</th>
+                        <th>Ano 2</th>
+                        <th>Ano 3</th>
+                        <th>Ano 5</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Usuários Ativos Globais</td>
+                        <td>200K</td>
+                        <td>1M</td>
+                        <td>3M</td>
+                        <td>10M</td>
+                    </tr>
+                    <tr>
+                        <td>ARR (Annual Recurring Revenue)</td>
+                        <td>R$ 50M</td>
+                        <td>R$ 150M</td>
+                        <td>R$ 400M</td>
+                        <td>R$ 1B</td>
+                    </tr>
+                    <tr>
+                        <td>Países de Operação</td>
+                        <td>3</td>
+                        <td>6</td>
+                        <td>10</td>
+                        <td>20</td>
+                    </tr>
+                    <tr>
+                        <td>Parceiros Integrados</td>
+                        <td>25</td>
+                        <td>100</td>
+                        <td>300</td>
+                        <td>1000</td>
+                    </tr>
+                    <tr>
+                        <td>Vidas Impactadas</td>
+                        <td>500K</td>
+                        <td>2M</td>
+                        <td>6M</td>
+                        <td>20M</td>
+                    </tr>
+                    <tr>
+                        <td>Economia Custos Saúde</td>
+                        <td>R$ 100M</td>
+                        <td>R$ 500M</td>
+                        <td>R$ 1.5B</td>
+                        <td>R$ 5B</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Conclusão -->
+        <section class="section">
+            <h2>🎯 Conclusão e Legado</h2>
+            
+            <div class="card">
+                <h3>✅ Transformação Social Global</h3>
+                <p>A Fase 5 representa a culminação de uma jornada transformacional que começou com uma ideia simples: usar tecnologia para melhorar a vida de pessoas idosas. Através da implementação de estratégias de escalabilidade técnica e organizacional, inovação contínua, sustentabilidade e visão de longo prazo, o SeniorCare está posicionado para se tornar não apenas uma empresa de sucesso, mas um agente de transformação social global.</p>
+                
+                <div style="margin-top: 2rem;">
+                    <strong>🌟 Legado e Impacto:</strong><br>
+                    O SeniorCare de 2035 será mais que uma empresa - será uma plataforma global que conecta idosos, famílias, profissionais de saúde e tecnologias em um ecossistema integrado de cuidado e bem-estar. Uma empresa que provou que é possível construir um negócio bilionário focado em resolver um dos maiores desafios sociais da humanidade.
+                </div>
+
+                <div style="margin-top: 2rem;">
+                    <strong>🚀 Visão de Futuro:</strong><br>
+                    <strong>Escalabilidade:</strong> Infraestrutura global preparada para crescimento exponencial<br>
+                    <strong>Inovação:</strong> R&D contínuo mantendo liderança tecnológica<br>
+                    <strong>Sustentabilidade:</strong> Modelo de negócio que combina lucro e impacto social<br>
+                    <strong>Transformação:</strong> O futuro do envelhecimento será digital, inclusivo e humano
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p><strong>Tech Challenge - Fase 5: Scale & Innovation</strong></p>
+            <p>Desenvolvido pelo Grupo 28 (84) • Julho 2025</p>
+            <p>Escalabilidade, inovação contínua e sustentabilidade para transformação global</p>
+        </div>
+    </footer>
+</body>
+</html>
+

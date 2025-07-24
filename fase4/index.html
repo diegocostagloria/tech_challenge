@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Challenge Fase 4 - Launch & Growth</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ff6b6b;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+        }
+
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero .highlight {
+            color: #ffd700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .section {
+            background: white;
+            margin: 2rem 0;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            color: #ff6b6b;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: #fff5f5;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid #ff6b6b;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            border-radius: 15px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .funnel {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .funnel-step {
+            background: linear-gradient(135deg, #fff5f5, #ffe8e8);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .funnel-step:hover {
+            border-color: #ff6b6b;
+            transform: translateY(-3px);
+        }
+
+        .funnel-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .funnel-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .funnel-desc {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .metrics-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .metrics-table th {
+            background: #ff6b6b;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .metrics-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .metrics-table tr:hover {
+            background: #fff5f5;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            margin: 2rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #ff6b6b;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 2rem 0;
+            padding: 0 2rem;
+        }
+
+        .timeline-item:nth-child(odd) {
+            text-align: right;
+            padding-right: calc(50% + 2rem);
+        }
+
+        .timeline-item:nth-child(even) {
+            text-align: left;
+            padding-left: calc(50% + 2rem);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 1rem;
+            width: 16px;
+            height: 16px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px #ff6b6b;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-title {
+            color: #ff6b6b;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .growth-chart {
+            background: #fff5f5;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .chart-bars {
+            display: flex;
+            align-items: end;
+            gap: 1rem;
+            height: 200px;
+            margin: 2rem 0;
+        }
+
+        .chart-bar {
+            flex: 1;
+            background: linear-gradient(to top, #ff6b6b, #ee5a24);
+            border-radius: 8px 8px 0 0;
+            position: relative;
+            display: flex;
+            align-items: end;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            padding: 0.5rem;
+        }
+
+        .chart-label {
+            text-align: center;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .section {
+                padding: 2rem;
+                margin: 1rem 0;
+            }
+
+            .timeline::before {
+                left: 2rem;
+            }
+
+            .timeline-item {
+                padding-left: 4rem !important;
+                padding-right: 1rem !important;
+                text-align: left !important;
+            }
+
+            .timeline-dot {
+                left: 2rem;
+            }
+
+            .funnel {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-bars {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="../" class="logo">Tech Challenge Grupo 28 (84)</a>
+                <ul class="nav-links">
+                    <li><a href="#intro">Introdução</a></li>
+                    <li><a href="#go-to-market">Go-to-Market</a></li>
+                    <li><a href="#marketing">Marketing</a></li>
+                    <li><a href="#analytics">Analytics</a></li>
+                    <li><a href="#customer-success">Customer Success</a></li>
+                    <li><a href="#parcerias">Parcerias</a></li>
+                    <li><a href="#cronograma">Cronograma</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="intro">
+        <div class="container">
+            <h1>Tech Challenge <span class="highlight">Fase 4</span></h1>
+            <p>Launch & Growth - Lançamento, marketing digital, métricas e crescimento</p>
+            <a href="../" class="back-btn">← Voltar ao Início</a>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Go-to-Market Strategy -->
+        <section class="section" id="go-to-market">
+            <h2>🚀 Estratégia Go-to-Market</h2>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">32M</div>
+                    <div class="stat-label">Idosos no Brasil</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">15,2%</div>
+                    <div class="stat-label">da População</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">3,2%</div>
+                    <div class="stat-label">Crescimento Anual</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">68%</div>
+                    <div class="stat-label">Possuem Smartphones</div>
+                </div>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>🎯 Segmentação de Mercado</h3>
+                    <p><strong>Primário - Idosos Independentes (65-75):</strong> 12M pessoas, renda média R$ 2.800<br>
+                    <strong>Secundário - Cuidadores Familiares:</strong> Filhos adultos, renda média R$ 4.200<br>
+                    <strong>Terciário - Profissionais de Saúde:</strong> 15.000 geriatras como prescritores</p>
+                </div>
+                <div class="card">
+                    <h3>💡 Proposta de Valor</h3>
+                    <p><strong>Para Idosos:</strong> "Mantenha sua independência com tecnologia simples"<br>
+                    <strong>Para Cuidadores:</strong> "Tranquilidade sabendo que estão bem cuidados"<br>
+                    <strong>Para Médicos:</strong> "Melhore aderência e outcomes dos pacientes"</p>
+                </div>
+                <div class="card">
+                    <h3>💰 Modelo de Pricing</h3>
+                    <p><strong>Freemium:</strong> Funcionalidades básicas gratuitas<br>
+                    <strong>Premium (R$ 19,90/mês):</strong> Recursos avançados<br>
+                    <strong>Família (R$ 39,90/mês):</strong> Múltiplos perfis + consultoria<br>
+                    <strong>B2B:</strong> White label para planos de saúde</p>
+                </div>
+                <div class="card">
+                    <h3>🤝 Canais de Distribuição</h3>
+                    <p><strong>Parcerias Estratégicas:</strong> Planos de saúde, farmácias<br>
+                    <strong>Digital:</strong> Marketing online direcionado<br>
+                    <strong>Médico:</strong> Prescrição em consultas<br>
+                    <strong>Referral:</strong> Programa de indicações</p>
+                </div>
+            </div>
+
+            <h3 style="text-align: center; margin: 2rem 0; color: #ff6b6b;">Lançamento Faseado</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Fase Alpha (Mês 1-2)</div>
+                        <p>100 usuários beta, validação product-market fit, NPS > 50, retenção 7 dias > 40%</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Fase Beta (Mês 3-4)</div>
+                        <p>1.000 usuários ativos, teste de canais, parcerias com farmácias, otimização conversão</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Fase Launch (Mês 5-6)</div>
+                        <p>5.000 usuários em 90 dias, lançamento público, PR coordenado, eventos especializados</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Marketing Digital -->
+        <section class="section" id="marketing">
+            <h2>📱 Marketing Digital e Growth Hacking</h2>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>📝 Marketing de Conteúdo</h3>
+                    <p><strong>Blog Especializado:</strong> 3 artigos/semana sobre envelhecimento saudável<br>
+                    <strong>SEO Strategy:</strong> Long-tail keywords com alta intenção<br>
+                    <strong>Conteúdo Segmentado:</strong> Por persona (idosos, cuidadores, médicos)<br>
+                    <strong>Educação Visual:</strong> Tutoriais e depoimentos em vídeo</p>
+                </div>
+                <div class="card">
+                    <h3>📱 Social Media</h3>
+                    <p><strong>Facebook (78% do público):</strong> Grupos, ads segmentados, community<br>
+                    <strong>YouTube:</strong> 50 vídeos/ano, tutoriais, lives mensais<br>
+                    <strong>WhatsApp Business:</strong> Suporte e engajamento direto<br>
+                    <strong>Email Marketing:</strong> Sequências automatizadas por comportamento</p>
+                </div>
+                <div class="card">
+                    <h3>🎯 Growth Hacking</h3>
+                    <p><strong>Programa Referral:</strong> 1 mês grátis por indicação<br>
+                    <strong>Gamificação:</strong> Badges e conquistas por uso consistente<br>
+                    <strong>A/B Testing:</strong> Otimização contínua de conversão<br>
+                    <strong>Social Proof:</strong> Compartilhamento de conquistas</p>
+                </div>
+                <div class="card">
+                    <h3>💰 Performance Marketing</h3>
+                    <p><strong>Google Ads:</strong> 40% do budget, alta intenção<br>
+                    <strong>Facebook/Instagram:</strong> 35%, awareness + consideração<br>
+                    <strong>YouTube:</strong> 15%, educação e demonstração<br>
+                    <strong>Novos Canais:</strong> 10%, testes experimentais</p>
+                </div>
+            </div>
+
+            <h3 style="text-align: center; margin: 2rem 0; color: #ff6b6b;">ROI por Canal de Marketing</h3>
+            <table class="metrics-table">
+                <thead>
+                    <tr>
+                        <th>Canal</th>
+                        <th>CAC</th>
+                        <th>CLV</th>
+                        <th>ROI</th>
+                        <th>Payback</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Google Search</td>
+                        <td>R$ 85</td>
+                        <td>R$ 520</td>
+                        <td>6.1x</td>
+                        <td>3.5 meses</td>
+                    </tr>
+                    <tr>
+                        <td>Facebook Ads</td>
+                        <td>R$ 95</td>
+                        <td>R$ 480</td>
+                        <td>5.1x</td>
+                        <td>4.0 meses</td>
+                    </tr>
+                    <tr>
+                        <td>Referral</td>
+                        <td>R$ 45</td>
+                        <td>R$ 580</td>
+                        <td>12.9x</td>
+                        <td>1.9 meses</td>
+                    </tr>
+                    <tr>
+                        <td>Content Marketing</td>
+                        <td>R$ 60</td>
+                        <td>R$ 510</td>
+                        <td>8.5x</td>
+                        <td>2.5 meses</td>
+                    </tr>
+                    <tr>
+                        <td>Partnerships</td>
+                        <td>R$ 70</td>
+                        <td>R$ 490</td>
+                        <td>7.0x</td>
+                        <td>2.9 meses</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Analytics e Métricas -->
+        <section class="section" id="analytics">
+            <h2>📊 Análise de Dados e Métricas (Analytics)</h2>
+            
+            <h3 style="text-align: center; margin: 2rem 0; color: #ff6b6b;">Framework AARRR</h3>
+            <div class="funnel">
+                <div class="funnel-step">
+                    <div class="funnel-icon">🎯</div>
+                    <div class="funnel-title">Acquisition</div>
+                    <div class="funnel-desc">MAU +15% m/m<br>CPA R$ 85<br>60% orgânico</div>
+                </div>
+                <div class="funnel-step">
+                    <div class="funnel-icon">⚡</div>
+                    <div class="funnel-title">Activation</div>
+                    <div class="funnel-desc">65% ativação<br>< 24h para ativar<br>80% completam tutorial</div>
+                </div>
+                <div class="funnel-step">
+                    <div class="funnel-icon">🔄</div>
+                    <div class="funnel-title">Retention</div>
+                    <div class="funnel-desc">D1: 70%<br>D7: 45%<br>D30: 25%</div>
+                </div>
+                <div class="funnel-step">
+                    <div class="funnel-icon">💰</div>
+                    <div class="funnel-title">Revenue</div>
+                    <div class="funnel-desc">MRR R$ 150K<br>ARPU R$ 24<br>CLV R$ 480</div>
+                </div>
+                <div class="funnel-step">
+                    <div class="funnel-icon">👥</div>
+                    <div class="funnel-title">Referral</div>
+                    <div class="funnel-desc">15% fazem indicação<br>35% conversão<br>K-Factor 0.05</div>
+                </div>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>🏗️ Arquitetura de Dados</h3>
+                    <p><strong>Coleta:</strong> Google Analytics 4, Mixpanel, Amplitude<br>
+                    <strong>Armazenamento:</strong> BigQuery como data warehouse<br>
+                    <strong>ETL:</strong> Airflow para transformação<br>
+                    <strong>Visualização:</strong> Looker Studio + Tableau</p>
+                </div>
+                <div class="card">
+                    <h3>🤖 Machine Learning</h3>
+                    <p><strong>Churn Prediction:</strong> Identificação 14 dias antes<br>
+                    <strong>LTV Prediction:</strong> Baseado em comportamento inicial<br>
+                    <strong>Personalização:</strong> Conteúdo e timing otimizados<br>
+                    <strong>Health Scoring:</strong> Alertas baseados em padrões</p>
+                </div>
+                <div class="card">
+                    <h3>🧪 A/B Testing</h3>
+                    <p><strong>Framework:</strong> Optimizely integrado<br>
+                    <strong>Metodologia:</strong> Poder 80%, significância 95%<br>
+                    <strong>Roadmap:</strong> 12 testes por trimestre<br>
+                    <strong>Foco:</strong> Onboarding, pricing, retenção, referral</p>
+                </div>
+                <div class="card">
+                    <h3>📈 Real-time Dashboards</h3>
+                    <p><strong>Executive:</strong> KPIs principais a cada 15min<br>
+                    <strong>Operations:</strong> Métricas técnicas em tempo real<br>
+                    <strong>Marketing:</strong> Performance de campanhas<br>
+                    <strong>CS:</strong> Health scores e alertas de churn</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Customer Success -->
+        <section class="section" id="customer-success">
+            <h2>🎯 Customer Success e Retenção</h2>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>🏆 Success Milestones</h3>
+                    <p><strong>First Value (7 dias):</strong> Onboarding + 1 medicamento + 1 lembrete (70%)<br>
+                    <strong>Habit Formation (30 dias):</strong> 21/30 dias uso + 3 medicamentos (45%)<br>
+                    <strong>Deep Engagement (90 dias):</strong> 3+ features + compartilhamento (25%)</p>
+                </div>
+                <div class="card">
+                    <h3>📊 Health Score (0-100)</h3>
+                    <p><strong>Engagement (40%):</strong> Frequência e features usadas<br>
+                    <strong>Adoption (30%):</strong> Progresso em milestones<br>
+                    <strong>Satisfaction (20%):</strong> NPS, support, ratings<br>
+                    <strong>Growth (10%):</strong> Referrals, upgrades, expansão</p>
+                </div>
+                <div class="card">
+                    <h3>📞 Suporte Multi-Canal</h3>
+                    <p><strong>Telefone (65%):</strong> 7h-19h, < 2min espera<br>
+                    <strong>WhatsApp (25%):</strong> Chatbot + humano<br>
+                    <strong>Email (10%):</strong> SLA 4h, linguagem simples<br>
+                    <strong>Onboarding Assistido:</strong> Para usuários 70+</p>
+                </div>
+                <div class="card">
+                    <h3>🎁 Programa de Fidelização</h3>
+                    <p><strong>SeniorCare Points:</strong> Sistema de recompensas<br>
+                    <strong>Embaixadores:</strong> 50 usuários champions<br>
+                    <strong>NPS Target:</strong> > 70 (atualmente 65)<br>
+                    <strong>Referral Rate:</strong> 15% fazem indicações</p>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">70</div>
+                    <div class="stat-label">NPS Target</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">4.5★</div>
+                    <div class="stat-label">App Store Rating</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">5%</div>
+                    <div class="stat-label">Churn Rate Target</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">92%</div>
+                    <div class="stat-label">Support CSAT</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Parcerias Estratégicas -->
+        <section class="section" id="parcerias">
+            <h2>🤝 Parcerias Estratégicas e Expansão</h2>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>🏥 Planos de Saúde</h3>
+                    <p><strong>Modelo B2B2C:</strong> White-label customizado<br>
+                    <strong>Pricing:</strong> R$ 8-12 por beneficiário/mês<br>
+                    <strong>Pipeline:</strong> Amil → Bradesco → SulAmérica<br>
+                    <strong>Benefícios:</strong> Redução custos, qualidade ANS</p>
+                </div>
+                <div class="card">
+                    <h3>💊 Redes de Farmácias</h3>
+                    <p><strong>Comissão:</strong> 5% sobre vendas via app<br>
+                    <strong>Integração:</strong> Sistemas de estoque<br>
+                    <strong>Entrega:</strong> Domicílio para usuários<br>
+                    <strong>Cross-selling:</strong> Produtos de saúde</p>
+                </div>
+                <div class="card">
+                    <h3>🗺️ Expansão Geográfica</h3>
+                    <p><strong>Fase 1:</strong> Grande SP (10K usuários)<br>
+                    <strong>Fase 2:</strong> Sudeste (25K usuários)<br>
+                    <strong>Fase 3:</strong> Nacional (100K usuários)<br>
+                    <strong>Adaptação:</strong> Regional e cultural</p>
+                </div>
+                <div class="card">
+                    <h3>🚀 Novos Produtos</h3>
+                    <p><strong>Q1:</strong> Wearables + Telemedicina<br>
+                    <strong>Q2:</strong> IA + Marketplace cuidadores<br>
+                    <strong>Q3:</strong> Diabetes/Hipertensão + Comunidade<br>
+                    <strong>Q4:</strong> IoT + Famílias multi-geracionais</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cronograma e Métricas -->
+        <section class="section" id="cronograma">
+            <h2>📅 Cronograma de Execução e Métricas</h2>
+            
+            <h3 style="text-align: center; margin: 2rem 0; color: #ff6b6b;">Projeção de Crescimento - 12 Meses</h3>
+            <div class="growth-chart">
+                <div class="chart-bars">
+                    <div class="chart-bar" style="height: 25%;">
+                        <span>1K</span>
+                    </div>
+                    <div class="chart-bar" style="height: 50%;">
+                        <span>5K</span>
+                    </div>
+                    <div class="chart-bar" style="height: 75%;">
+                        <span>15K</span>
+                    </div>
+                    <div class="chart-bar" style="height: 100%;">
+                        <span>30K</span>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 1rem;">
+                    <div class="chart-label" style="flex: 1;">Mês 3<br>Foundation</div>
+                    <div class="chart-label" style="flex: 1;">Mês 6<br>Growth</div>
+                    <div class="chart-label" style="flex: 1;">Mês 9<br>Scale</div>
+                    <div class="chart-label" style="flex: 1;">Mês 12<br>Expansion</div>
+                </div>
+            </div>
+
+            <h3 style="text-align: center; margin: 2rem 0; color: #ff6b6b;">Métricas de Sucesso por Trimestre</h3>
+            <table class="metrics-table">
+                <thead>
+                    <tr>
+                        <th>Métrica</th>
+                        <th>Mês 3</th>
+                        <th>Mês 6</th>
+                        <th>Mês 9</th>
+                        <th>Mês 12</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>MAU (Usuários Ativos)</td>
+                        <td>1.000</td>
+                        <td>5.000</td>
+                        <td>15.000</td>
+                        <td>30.000</td>
+                    </tr>
+                    <tr>
+                        <td>Usuários Premium</td>
+                        <td>100</td>
+                        <td>500</td>
+                        <td>2.000</td>
+                        <td>4.500</td>
+                    </tr>
+                    <tr>
+                        <td>MRR (Receita Recorrente)</td>
+                        <td>R$ 2.500</td>
+                        <td>R$ 15.000</td>
+                        <td>R$ 50.000</td>
+                        <td>R$ 120.000</td>
+                    </tr>
+                    <tr>
+                        <td>CAC (Custo Aquisição)</td>
+                        <td>R$ 120</td>
+                        <td>R$ 100</td>
+                        <td>R$ 85</td>
+                        <td>R$ 75</td>
+                    </tr>
+                    <tr>
+                        <td>LTV (Valor Vitalício)</td>
+                        <td>R$ 400</td>
+                        <td>R$ 450</td>
+                        <td>R$ 480</td>
+                        <td>R$ 520</td>
+                    </tr>
+                    <tr>
+                        <td>Churn Rate</td>
+                        <td>8%</td>
+                        <td>6%</td>
+                        <td>5%</td>
+                        <td>4%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Q1 - Foundation (Meses 1-3)</div>
+                        <p>Lançamento oficial, 1K MAU, NPS > 50, primeira parceria farmácia</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Q2 - Growth (Meses 4-6)</div>
+                        <p>5K MAU, 500 premium, MRR R$ 15K, primeira parceria B2B2C</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Q3 - Scale (Meses 7-9)</div>
+                        <p>15K MAU, 2K premium, MRR R$ 50K, expansão Rio de Janeiro</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Q4 - Expansion (Meses 10-12)</div>
+                        <p>30K MAU, 4.5K premium, MRR R$ 120K, 3 parcerias B2B2C</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusão -->
+        <section class="section">
+            <h2>🎯 Conclusão e Próximos Passos</h2>
+            
+            <div class="card">
+                <h3>✅ Fatores Críticos de Sucesso</h3>
+                <p>A Fase 4 representa a materialização comercial de todo o trabalho técnico e estratégico desenvolvido nas fases anteriores. Através da implementação de uma estratégia go-to-market abrangente, marketing digital direcionado, analytics avançado e foco em customer success, estabelecemos as bases para transformar o SeniorCare em uma plataforma líder no mercado de tecnologia assistiva para idosos.</p>
+                
+                <div style="margin-top: 2rem;">
+                    <strong>🚀 Transição para Fase 5:</strong><br>
+                    Com o motor de crescimento estabelecido na Fase 4, a <strong>Fase 5: Scale & Innovation</strong> focará na escalabilidade técnica e organizacional, inovação contínua, sustentabilidade e visão de longo prazo. A transição natural será do crescimento inicial para a consolidação como plataforma dominante no mercado.
+                </div>
+
+                <div style="margin-top: 2rem;">
+                    <strong>📊 Impacto Esperado:</strong><br>
+                    <strong>Usuários:</strong> 30.000 usuários ativos impactados positivamente<br>
+                    <strong>Receita:</strong> R$ 120.000 MRR estabelecendo viabilidade comercial<br>
+                    <strong>Mercado:</strong> Posicionamento como líder em tecnologia para idosos<br>
+                    <strong>Social:</strong> Melhoria na qualidade de vida de milhares de famílias
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p><strong>Tech Challenge - Fase 4: Launch & Growth</strong></p>
+            <p>Desenvolvido pelo Grupo 28 (84) • Julho 2025</p>
+            <p>Lançamento, marketing digital, métricas e crescimento sustentável</p>
+        </div>
+    </footer>
+</body>
+</html>
+

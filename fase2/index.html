@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Challenge Fase 2 - Squad Generation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero .highlight {
+            color: #ffd700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Main Content */
+        .main-content {
+            background: white;
+            margin-top: 2rem;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
+            min-height: 100vh;
+        }
+
+        .content-section {
+            padding: 3rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .content-section:last-child {
+            border-bottom: none;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #718096;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+            padding: 0.5rem;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .card-content {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        /* Metrics */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            background: #f7fafc;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        tr:hover {
+            background: #f7fafc;
+        }
+
+        /* Lists */
+        .feature-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #48bb78;
+            font-weight: bold;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 2rem;
+            align-items: flex-start;
+        }
+
+        .timeline-marker {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            flex: 1;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-links {
+                justify-content: center;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 2rem 0;
+            }
+
+            .content-section {
+                padding: 2rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="#" class="logo">Tech Challenge Grupo 28 (84)</a>
+                <div class="nav-links">
+                    <a href="#introducao">Introdução</a>
+                    <a href="#planejamento-financeiro">Planejamento Financeiro</a>
+                    <a href="#gestao-iniciativa">Gestão da Iniciativa</a>
+                    <a href="#comunicacao">Comunicação</a>
+                    <a href="#time-alto-desempenho">Time de Alto Desempenho</a>
+                    <a href="#gestao-conflitos">Gestão de Conflitos</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Tech Challenge <span class="highlight">Fase 2</span></h1>
+            <p>Squad Generation - Planejamento estratégico para formação de equipes de alto desempenho</p>
+            <a href="../index.html" class="back-button">← Voltar ao Início</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Introdução -->
+        <section id="introducao" class="content-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-icon">📋</div>
+                    <h2 class="section-title">Sumário Executivo</h2>
+                    <p class="section-subtitle">Plano estratégico para a segunda fase do Tech Challenge, com foco na construção de um time multidisciplinar e engajado</p>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon" style="background: #4299e1;">🎯</div>
+                            <h3 class="card-title">Contexto da Primeira Fase</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>Na primeira fase, identificamos uma dor crítica relacionada à dificuldade dos idosos em organizar e lembrar de suas atividades diárias. Através de metodologias de Design Thinking, Lean Startup e Product Discovery, validamos a necessidade de uma solução tecnológica que promova autonomia e independência para este público.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon" style="background: #48bb78;">📱</div>
+                            <h3 class="card-title">MVP Definido</h3>
+                        </div>
+                        <div class="card-content">
+                            <p><strong>Aplicativo móvel com as funcionalidades:</strong></p>
+                            <ul class="feature-list">
+                                <li>Lembretes de medicação</li>
+                                <li>Agendamento de consultas médicas</li>
+                                <li>Notificações para pagamentos</li>
+                                <li>Organização de compromissos sociais</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon" style="background: #ed8936;">✅</div>
+                            <h3 class="card-title">Validação Realizada</h3>
+                        </div>
+                        <div class="card-content">
+                            <p><strong>Pesquisa com 65 respondentes idosos confirmou as principais dores:</strong></p>
+                            <ul class="feature-list">
+                                <li>Esquecimento de remédios e consultas</li>
+                                <li>Sentimento de solidão</li>
+                                <li>Dificuldade no uso de tecnologias convencionais</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Planejamento Financeiro -->
+        <section id="planejamento-financeiro" class="content-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-icon">💰</div>
+                    <h2 class="section-title">Planejamento Financeiro e Estratégia de Sourcing</h2>
+                    <p class="section-subtitle">Estratégia híbrida com recursos internos e externos para desenvolvimento do MVP</p>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">R$ 594.000</div>
+                        <div class="metric-label">Investimento Total</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">60% / 40%</div>
+                        <div class="metric-label">Estratégia Híbrida</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">66%</div>
+                        <div class="metric-label">ROI Projetado (24 meses)</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">6 meses</div>
+                        <div class="metric-label">Duração do Projeto</div>
+                    </div>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon" style="background: #4299e1;">🏢</div>
+                            <h3 class="card-title">Recursos Internos (60%)</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Função</th>
+                                            <th>Valor Mensal</th>
+                                            <th>Total (6 meses)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Product Owner</td>
+                                            <td>R$ 15.000</td>
+                                            <td>R$ 90.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Scrum Master</td>
+                                            <td>R$ 12.000</td>
+                                            <td>R$ 72.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Designer UX/UI</td>
+                                            <td>R$ 10.000</td>
+                                            <td>R$ 60.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Analista de QA</td>
+                                            <td>R$ 8.000</td>
+                                            <td>R$ 48.000</td>
+                                        </tr>
+                                        <tr style="font-weight: bold; background: #f7fafc;">
+                                            <td>Total Interno</td>
+                                            <td>R$ 45.000</td>
+                                            <td>R$ 270.000</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon" style="background: #48bb78;">🤝</div>
+                            <h3 class="card-title">Recursos Externos (40%)</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Função</th>
+                                            <th>Valor Mensal</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Squad Mobile (2 devs)</td>
+                                            <td>R$ 40.000</td>
+                                            <td>R$ 240.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Especialista Acessibilidade</td>
+                                            <td>R$ 8.000 (3 meses)</td>
+                                            <td>R$ 24.000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Infraestrutura AWS</td>
+                                            <td>R$ 10.000</td>
+                                            <td>R$ 60.000</td>
+                                        </tr>
+                                        <tr style="font-weight: bold; background: #f7fafc;">
+                                            <td>Total Externo</td>
+                                            <td>R$ 58.000</td>
+                                            <td>R$ 324.000</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: #ed8936;">📊</div>
+                        <h3 class="card-title">Modelo de Receita Pós-MVP</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="cards-grid">
+                            <div style="text-align: center;">
+                                <h4><strong>Freemium</strong></h4>
+                                <p>Funcionalidades básicas gratuitas</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <h4><strong>Premium</strong></h4>
+                                <p>R$ 9,90/mês para funcionalidades avançadas</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <h4><strong>Parcerias</strong></h4>
+                                <p>Farmácias e clínicas</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <h4><strong>Publicidade</strong></h4>
+                                <p>Anúncios direcionados (não intrusiva)</p>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 2rem; padding: 1.5rem; background: #f7fafc; border-radius: 10px;">
+                            <h4><strong>Projeção de Break-even:</strong></h4>
+                            <ul class="feature-list">
+                                <li><strong>Meta:</strong> 3.000 usuários premium em 12 meses</li>
+                                <li><strong>Receita mensal:</strong> R$ 29.700</li>
+                                <li><strong>Break-even:</strong> 18 meses após lançamento</li>
+                                <li><strong>Receita projetada (24 meses):</strong> R$ 890.000</li>
+                                <li><strong>ROI:</strong> 66% em 24 meses</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gestão da Iniciativa -->
+        <section id="gestao-iniciativa" class="content-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-icon">⚙️</div>
+                    <h2 class="section-title">Gestão da Iniciativa e Produto de Software</h2>
+                    <p class="section-subtitle">Framework Scrum adaptado para equipe híbrida com foco em entregas incrementais</p>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon" style="background: #4299e1;">🔄</div>
+                            <h3 class="card-title">Framework Scrum Adaptado</h3>
+                        </div>
+                        <div class="card-content">
+                            <p><strong>Justificativa da Escolha:</strong></p>
+                            <ul class="feature-list">
+                                <li>Transparência e visibilidade do progresso</li>
+                                <li>Adaptabilidade a mudanças de requisitos</li>
+                                <li>Entregas incrementais de valor</li>
+                                <li>Facilita integração entre time interno e externo</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon" style="background: #48bb78;">📋</div>
+                            <h3 class="card-title">Épicos Principais</h3>
+                        </div>
+                        <div class="card-content">
+                            <div style="margin-bottom: 1rem;">
+                                <h4><strong>Épico 1: Gestão de Usuário</strong></h4>
+                                <ul class="feature-list">
+                                    <li>Cadastro simplificado</li>
+                                    <li>Perfil personalizado</li>
+                                    <li>Configurações de acessibilidade</li>
+                                    <li>Recuperação de senha</li>
+                                </ul>
+                            </div>
+                            <div style="margin-bottom: 1rem;">
+                                <h4><strong>Épico 2: Sistema de Lembretes</strong></h4>
+                                <ul class="feature-list">
+                                    <li>Lembretes de medicação</li>
+                                    <li>Notificações de consultas</li>
+                                    <li>Alertas de pagamentos</li>
+                                    <li>Lembretes personalizados</li>
+                                </ul>
+                            </div>
+                            <div style="margin-bottom: 1rem;">
+                                <h4><strong>Épico 3: Interface Acessível</strong></h4>
+                                <ul class="feature-list">
+                                    <li>Design com alto contraste</li>
+                                    <li>Fontes grandes e legíveis</li>
+                                    <li>Navegação simplificada</li>
+                                    <li>Comandos de voz</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4><strong>Épico 4: Sincronização e Backup</strong></h4>
+                                <ul class="feature-list">
+                                    <li>Backup automático na nuvem</li>
+                                    <li>Sincronização entre dispositivos</li>
+                                    <li>Recuperação de dados</li>
+                                    <li>Compartilhamento com familiares</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: #ed8936;">📅</div>
+                        <h3 class="card-title">Cronograma de Entregas (6 meses)</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-marker">1</div>
+                                <div class="timeline-content">
+                                    <div class="timeline-title">Sprint 1 (Semanas 1-2): Fundação</div>
+                                    <p>Setup do projeto e ambiente, arquitetura base do aplicativo, telas de cadastro e login. <strong>Entregável:</strong> Protótipo navegável</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-marker">2</div>
+                                <div class="timeline-content">
+                                    <div class="timeline-title">Sprint 2 (Semanas 3-4): Core Features</div>
+                                    <p>Sistema de lembretes básico, notificações push, cadastro de medicamentos. <strong>Entregável:</strong> Funcionalidade de lembretes</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-marker">3</div>
+                                <div class="timeline-content">
+                                    <div class="timeline-title">Sprint 3 (Semanas 5-6): Acessibilidade</div>
+                                    <p>Interface com alto contraste, fontes grandes e legíveis, navegação simplificada. <strong>Entregável:</strong> App acessível para testes</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-marker">4</div>
+                                <div class="timeline-content">
+                                    <div class="timeline-title">Sprint 4 (Semanas 7-8): Consultas Médicas</div>
+                                    <p>Agendamento de consultas, lembretes de consultas, cadastro de médicos. <strong>Entregável:</strong> Gestão completa de consultas</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-marker">5</div>
+                                <div class="timeline-content">
+                                    <div class="timeline-title">Sprint 5 (Semanas 9-10): Refinamentos</div>
+                                    <p>Melhorias de UX baseadas em testes, correções de bugs, otimizações de performance. <strong>Entregável:</strong> Versão beta estável</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-marker">6</div>
+                                <div class="timeline-content">
+                                    <div class="timeline-title">Sprint 6 (Semanas 11-12): Lançamento MVP</div>
+                                    <p>Testes finais com usuários, deploy nas lojas, documentação de usuário. <strong>Entregável:</strong> MVP em produção</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: #9f7aea;">📊</div>
+                        <h3 class="card-title">Métricas de Sucesso</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="cards-grid">
+                            <div>
+                                <h4><strong>Métricas de Desenvolvimento:</strong></h4>
+                                <ul class="feature-list">
+                                    <li>Velocidade da equipe: 40-50 story points por sprint</li>
+                                    <li>Bug rate: Máximo 2 bugs críticos por sprint</li>
+                                    <li>Code coverage: Mínimo 80%</li>
+                                    <li>Performance: Tempo de resposta < 2 segundos</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4><strong>Métricas de Produto:</strong></h4>
+                                <ul class="feature-list">
+                                    <li>Taxa de adoção: 1.000 downloads no primeiro mês</li>
+                                    <li>Retenção: 60% dos usuários ativos após 30 dias</li>
+                                    <li>Satisfação: NPS > 50 com usuários idosos</li>
+                                    <li>Acessibilidade: 100% conformidade com WCAG 2.1</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4><strong>Métricas de Negócio:</strong></h4>
+                                <ul class="feature-list">
+                                    <li>Conversão freemium para premium: 15%</li>
+                                    <li>Custo de aquisição de cliente: < R$ 25</li>
+                                    <li>Lifetime value: > R$ 200</li>
+                                    <li>Churn rate: < 10% mensal</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comunicação -->
+        <section id="comunicacao" class="content-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-icon">💬</div>
+                    <h2 class="section-title">Planejamento de Comunicação</h2>
+                    <p class="section-subtitle">Estratégia de comunicação para garantir alinhamento e transparência entre equipes híbridas</p>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon" style="background: #4299e1;">📱</div>
+                            <h3 class="card-title">Canais de Comunicação</h3>
+                        </div>
+                        <div class="card-content">
+                            <div style="margin-bottom: 1.5rem;">
+                                <h4><strong>Comunicação Interna da Equipe:</strong></h4>
+                                <ul class="feature-list">
+                                    <li><strong>Microsoft Teams:</strong> Chat geral da equipe, compartilhamento de arquivos</li>
+                                    <li><strong>Jira:</strong> Acompanhamento de tarefas e bugs, relatórios automatizados</li>
+                                </ul>
+                            </div>
+                            <div style="margin-bottom: 1.5rem;">
+                                <h4><strong>Comunicação com Stakeholders:</strong></h4>
+                                <ul class="feature-list">
+                                    <li><strong>Email Corporativo:</strong> Relatórios semanais de progresso</li>
+                                    <li><strong>Confluence:</strong> Documentação técnica e atas de reuniões</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4><strong>Comunicação com Usuários:</strong></h4>
+                                <ul class="feature-list">
+                                    <li><strong>WhatsApp Business:</strong> Suporte direto aos usuários idosos</li>
+                                    <li><strong>Email Marketing:</strong> Newsletter mensal com novidades</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon" style="background: #48bb78;">🔄</div>
+                            <h3 class="card-title">Rituais Scrum</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Ritual</th>
+                                            <th>Duração</th>
+                                            <th>Participantes</th>
+                                            <th>Frequência</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Daily Scrum</td>
+                                            <td>15 min</td>
+                                            <td>Scrum Team</td>
+                                            <td>Diário (9h00)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sprint Planning</td>
+                                            <td>4h</td>
+                                            <td>Scrum Team</td>
+                                            <td>A cada 2 semanas</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sprint Review</td>
+                                            <td>2h</td>
+                                            <td>Team + Stakeholders</td>
+                                            <td>A cada 2 semanas</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Retrospective</td>
+                                            <td>1.5h</td>
+                                            <td>Scrum Team</td>
+                                            <td>A cada 2 semanas</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: #ed8936;">📊</div>
+                        <h3 class="card-title">Reuniões Estratégicas</h3>
+                    </div>
+                    <div class="card-content">
+                        <div style="margin-bottom: 1.5rem;">
+                            <h4><strong>Steering Committee (Mensal):</strong></h4>
+                            <p>Duração: 1 hora | Participantes: Executivos + Product Owner + Scrum Master</p>
+                            <p>Agenda: Revisão de métricas de negócio, decisões estratégicas, aprovação de mudanças</p>
+                        </div>
+                        <div style="margin-bottom: 1.5rem;">
+                            <h4><strong>User Advisory Board (Mensal):</strong></h4>
+                            <p>Duração: 1,5 horas | Participantes: Representantes idosos + UX Designer + Product Owner</p>
+                            <p>Agenda: Validação de funcionalidades, coleta de necessidades, testes de usabilidade</p>
+                        </div>
+                        <div>
+                            <h4><strong>All Hands (Mensal):</strong></h4>
+                            <p>Duração: 1 hora | Participantes: Toda a equipe + Stakeholders</p>
+                            <p>Agenda: Apresentação de resultados, reconhecimento da equipe, Q&A aberto</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Time de Alto Desempenho -->
+        <section id="time-alto-desempenho" class="content-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-icon">🚀</div>
+                    <h2 class="section-title">Construção de Time de Alto Desempenho</h2>
+                    <p class="section-subtitle">Aplicação de conceitos de Gestão 4.0 para criar uma equipe auto-organizada e de alta performance</p>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon" style="background: #4299e1;">🎯</div>
+                            <h3 class="card-title">Fundamentos da Gestão 4.0</h3>
+                        </div>
+                        <div class="card-content">
+                            <div style="margin-bottom: 1.5rem;">
+                                <h4><strong>Autonomia e Empoderamento:</strong></h4>
+                                <ul class="feature-list">
+                                    <li>Decisões descentralizadas no nível operacional</li>
+                                    <li>Autoridade para resolver problemas sem escalação</li>
+                                    <li>Responsabilidade compartilhada pelos resultados</li>
+                                    <li>Liberdade para experimentar e inovar</li>
+                                </ul>
+                            </div>
+                            <div style="margin-bottom: 1.5rem;">
+                                <h4><strong>Colaboração e Transparência:</strong></h4>
+                                <ul class="feature-list">
+                                    <li>Informações acessíveis a todos os membros</li>
+                                    <li>Decisões tomadas de forma colaborativa</li>
+                                    <li>Feedback contínuo e bidirecional</li>
+                                    <li>Cultura de aprendizado compartilhado</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4><strong>Propósito e Significado:</strong></h4>
+                                <ul class="feature-list">
+                                    <li>Conexão clara entre trabalho individual e impacto social</li>
+                                    <li>Missão compartilhada de ajudar idosos</li>
+                                    <li>Reconhecimento do valor de cada contribuição</li>
+                                    <li>Alinhamento entre valores pessoais e organizacionais</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon" style="background: #48bb78;">📈</div>
+                            <h3 class="card-title">Transformação em Self-Organized Team</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-marker">1</div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">Fase 1 - Estabelecimento da Base (Mês 1)</div>
+                                        <p>Definição de valores e princípios, workshop de alinhamento, criação do manifesto da equipe, estabelecimento de normas de trabalho.</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-marker">2</div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">Fase 2 - Desenvolvimento da Autonomia (Meses 2-3)</div>
+                                        <p>Delegação progressiva, criação de grupos de trabalho (Tech Guild, UX Guild, Quality Guild), empoderamento gradual da equipe.</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-marker">3</div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">Fase 3 - Consolidação (Meses 4-6)</div>
+                                        <p>Ownership completo, gestão independente do backlog técnico, decisões sobre refatoração, mentoria de novos membros.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: #ed8936;">💡</div>
+                        <h3 class="card-title">Cultura de High Performance</h3>
+                    </div>
+                    <div class="card-content">
+                        <div style="margin-bottom: 1.5rem;">
+                            <h4><strong>Mindset de Crescimento:</strong></h4>
+                            <ul class="feature-list">
+                                <li>Erros vistos como oportunidades de aprendizado</li>
+                                <li>Feedback construtivo valorizado</li>
+                                <li>Experimentação encorajada</li>
+                                <li>Melhoria contínua como hábito</li>
+                            </ul>
+                        </div>
+                        <div style="margin-bottom: 1.5rem;">
+                            <h4><strong>Foco no Usuário:</strong></h4>
+                            <ul class="feature-list">
+                                <li>Decisões baseadas em impacto no usuário</li>
+                                <li>Empatia com idosos como prioridade</li>
+                                <li>Validação constante com usuários reais</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4><strong>Excelência Técnica:</strong></h4>
+                            <ul class="feature-list">
+                                <li>Código limpo como padrão</li>
+                                <li>Testes automatizados obrigatórios</li>
+                                <li>Refatoração contínua</li>
+                                <li>Documentação viva</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gestão de Conflitos -->
+        <section id="gestao-conflitos" class="content-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-icon">🛡️</div>
+                    <h2 class="section-title">Gestão de Conflitos e Negociação</h2>
+                    <p class="section-subtitle">Estratégia de gestão de conflitos baseada em resolução colaborativa e transformação construtiva</p>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon" style="background: #4299e1;">🎯</div>
+                            <h3 class="card-title">Filosofia de Abordagem</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>Nossa abordagem à gestão de conflitos baseia-se nos princípios de resolução colaborativa e transformação construtiva, onde conflitos são vistos como oportunidades de crescimento e melhoria.</p>
+                            <div style="margin-top: 1.5rem;">
+                                <h4><strong>Princípios Fundamentais:</strong></h4>
+                                <ul class="feature-list">
+                                    <li><strong>Prevenção Proativa:</strong> Identificar e abordar tensões antes que se tornem conflitos</li>
+                                    <li><strong>Comunicação Aberta:</strong> Criar ambiente seguro para expressão de divergências</li>
+                                    <li><strong>Foco na Solução:</strong> Concentrar energia em resolver, não em culpar</li>
+                                    <li><strong>Aprendizado Contínuo:</strong> Extrair lições de cada situação conflituosa</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon" style="background: #48bb78;">🤝</div>
+                            <h3 class="card-title">Modelo de Negociação Colaborativa</h3>
+                        </div>
+                        <div class="card-content">
+                            <div style="margin-bottom: 1.5rem;">
+                                <h4><strong>Princípios da Negociação Ganha-Ganha:</strong></h4>
+                                <ul class="feature-list">
+                                    <li>Separar pessoas de problemas</li>
+                                    <li>Focar em interesses, não posições</li>
+                                    <li>Gerar opções de benefício mútuo</li>
+                                    <li>Usar critérios objetivos</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4><strong>Processo de Negociação:</strong></h4>
+                                <div class="timeline">
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker">1</div>
+                                        <div class="timeline-content">
+                                            <div class="timeline-title">Preparação</div>
+                                            <p>Identificar interesses próprios e da outra parte, definir BATNA, estabelecer zona de acordo possível.</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker">2</div>
+                                        <div class="timeline-content">
+                                            <div class="timeline-title">Abertura</div>
+                                            <p>Estabelecer rapport e confiança, definir agenda e regras do jogo, criar ambiente colaborativo.</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker">3</div>
+                                        <div class="timeline-content">
+                                            <div class="timeline-title">Exploração</div>
+                                            <p>Compreender interesses subjacentes, identificar pontos de convergência, explorar opções criativas.</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-marker">4</div>
+                                        <div class="timeline-content">
+                                            <div class="timeline-title">Fechamento</div>
+                                            <p>Formalizar acordos, definir implementação, estabelecer monitoramento, planejar comunicação.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: #ed8936;">🔄</div>
+                        <h3 class="card-title">Melhoria Contínua</h3>
+                    </div>
+                    <div class="card-content">
+                        <div style="margin-bottom: 1.5rem;">
+                            <h4><strong>Revisão Mensal de Conflitos:</strong></h4>
+                            <ul class="feature-list">
+                                <li>Análise de conflitos ocorridos</li>
+                                <li>Identificação de padrões</li>
+                                <li>Avaliação da eficácia das resoluções</li>
+                                <li>Ajustes nos processos</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4><strong>Retrospectiva Trimestral:</strong></h4>
+                            <ul class="feature-list">
+                                <li>Revisão profunda dos processos</li>
+                                <li>Feedback da equipe sobre eficácia</li>
+                                <li>Identificação de melhorias</li>
+                                <li>Atualização de ferramentas e treinamentos</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusão -->
+        <section class="content-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-icon">🎯</div>
+                    <h2 class="section-title">Conclusão e Próximos Passos</h2>
+                    <p class="section-subtitle">Fatores críticos de sucesso e cronograma de implementação</p>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon" style="background: #48bb78;">✅</div>
+                            <h3 class="card-title">Fatores Críticos de Sucesso</h3>
+                        </div>
+                        <div class="card-content">
+                            <div style="margin-bottom: 1.5rem;">
+                                <h4><strong>Liderança Comprometida:</strong></h4>
+                                <ul class="feature-list">
+                                    <li>Apoio executivo consistente ao longo do projeto</li>
+                                    <li>Decisões rápidas quando necessário</li>
+                                    <li>Recursos adequados disponibilizados</li>
+                                </ul>
+                            </div>
+                            <div style="margin-bottom: 1.5rem;">
+                                <h4><strong>Equipe Engajada:</strong></h4>
+                                <ul class="feature-list">
+                                    <li>Alinhamento com a missão de ajudar idosos</li>
+                                    <li>Competências técnicas adequadas</li>
+                                    <li>Comprometimento com qualidade e prazos</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4><strong>Usuários Envolvidos:</strong></h4>
+                                <ul class="feature-list">
+                                    <li>Participação ativa de idosos no desenvolvimento</li>
+                                    <li>Feedback contínuo</li>
+                                    <li>Comunicação clara de necessidades</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-icon" style="background: #ed8936;">📅</div>
+                            <h3 class="card-title">Cronograma de Implementação</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-marker">1</div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">Mês 1 - Setup e Alinhamento</div>
+                                        <p>Contratação da equipe externa, alinhamento de processos e ferramentas, setup do ambiente de desenvolvimento.</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-marker">2-4</div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">Meses 2-4 - Desenvolvimento Core</div>
+                                        <p>Implementação das funcionalidades principais, testes contínuos com usuários, refinamento da interface.</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-marker">5-6</div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">Meses 5-6 - Finalização e Lançamento</div>
+                                        <p>Testes finais e correções, preparação para lançamento, deploy nas lojas de aplicativos.</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-marker">7-12</div>
+                                    <div class="timeline-content">
+                                        <div class="timeline-title">Meses 7-12 - Evolução e Crescimento</div>
+                                        <p>Implementação de funcionalidades avançadas, expansão da base de usuários, otimizações baseadas em uso real.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: #9f7aea;">📊</div>
+                        <h3 class="card-title">Métricas de Sucesso</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="cards-grid">
+                            <div>
+                                <h4><strong>Métricas de Desenvolvimento:</strong></h4>
+                                <ul class="feature-list">
+                                    <li>Velocity estável acima de 40 story points/sprint</li>
+                                    <li>Code coverage mantido acima de 80%</li>
+                                    <li>Bug rate abaixo de 0.1 por story point</li>
+                                    <li>Satisfação da equipe acima de 7.5/10</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4><strong>Métricas de Produto:</strong></h4>
+                                <ul class="feature-list">
+                                    <li>1.000 downloads no primeiro mês</li>
+                                    <li>60% de retenção após 30 dias</li>
+                                    <li>NPS acima de 50 com usuários idosos</li>
+                                    <li>100% conformidade com WCAG 2.1</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4><strong>Métricas de Negócio:</strong></h4>
+                                <ul class="feature-list">
+                                    <li>Break-even em 18 meses</li>
+                                    <li>15% de conversão freemium para premium</li>
+                                    <li>Custo de aquisição abaixo de R$ 25</li>
+                                    <li>Churn rate abaixo de 10% mensal</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 3rem; padding: 2rem; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border-radius: 15px; text-align: center;">
+                    <h3 style="margin-bottom: 1rem;">🚀 Considerações Finais</h3>
+                    <p style="font-size: 1.1rem; line-height: 1.8;">A segunda fase do Tech Challenge é mais do que um passo no projeto — é a chance de transformar uma ideia que já foi validada em uma solução concreta, com potencial de impactar, de verdade, a vida de muitos idosos. Nossa estratégia combina boas práticas de gestão e desenvolvimento com um olhar atento ao que realmente importa: as pessoas.</p>
+                    <p style="font-size: 1rem; margin-top: 1rem; opacity: 0.9;">E no fim das contas, o que vai nos mostrar que deu certo não serão apenas os gráficos ou relatórios. Será cada vez que um idoso conseguir se lembrar de tomar um remédio na hora certa, comparecer a uma consulta importante ou simplesmente manter contato com quem ama com a ajuda do nosso app. Isso sim é sucesso.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
+
