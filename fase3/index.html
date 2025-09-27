@@ -3,173 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Challenge Fase 3 - Development & Implementation</title>
+    <title>Tech Challenge Fase 3 - IT Architecting & Defining</title>
+    <link rel="stylesheet" href="../fase1/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #667eea;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .nav-links a:hover {
-            color: #667eea;
-        }
-
-        .hero {
-            padding: 4rem 0;
-            text-align: center;
-            color: white;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .hero .highlight {
-            color: #ffd700;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .section {
-            background: white;
+        .architecture-diagram {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
             margin: 2rem 0;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #667eea;
         }
-
-        .section h2 {
-            font-size: 2.5rem;
-            color: #667eea;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .cards-grid {
+        
+        .domain-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin: 2rem 0;
         }
-
-        .card {
-            background: #f8f9ff;
-            padding: 2rem;
+        
+        .domain-card {
+            background: white;
             border-radius: 15px;
-            border-left: 5px solid #667eea;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #667eea;
             transition: transform 0.3s ease;
         }
-
-        .card:hover {
+        
+        .domain-card:hover {
             transform: translateY(-5px);
         }
-
-        .card h3 {
+        
+        .domain-card h4 {
             color: #667eea;
             margin-bottom: 1rem;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
-
-        .card p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+        
+        .privacy-table {
+            width: 100%;
+            border-collapse: collapse;
             margin: 2rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-
-        .stat {
-            text-align: center;
-            padding: 2rem;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        
+        .privacy-table th,
+        .privacy-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .privacy-table th {
+            background: #667eea;
             color: white;
-            border-radius: 15px;
+            font-weight: 600;
         }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
+        
+        .privacy-table tr:hover {
+            background: #f8f9ff;
         }
-
-        .stat-label {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-
-        .tech-stack {
+        
+        .tech-stack-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
             margin: 2rem 0;
         }
-
+        
         .tech-item {
             background: linear-gradient(135deg, #f8f9ff, #e8e9ff);
             padding: 1.5rem;
@@ -178,600 +86,497 @@
             border: 2px solid transparent;
             transition: all 0.3s ease;
         }
-
+        
         .tech-item:hover {
             border-color: #667eea;
             transform: translateY(-3px);
         }
-
+        
         .tech-icon {
             font-size: 2.5rem;
             margin-bottom: 1rem;
         }
-
-        .tech-name {
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 0.5rem;
-        }
-
-        .tech-desc {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .code-block {
-            background: #1a1a1a;
-            color: #f8f8f2;
-            padding: 1.5rem;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 1rem 0;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-        }
-
-        .back-btn {
+        
+        .compliance-badge {
             display: inline-block;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 25px;
-            text-decoration: none;
+            background: #e6fffa;
+            color: #234e52;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
             font-weight: 500;
-            margin: 2rem 0;
-            transition: all 0.3s ease;
+            margin: 0.25rem;
+            border: 1px solid #81e6d9;
         }
-
-        .back-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        
+        .risk-high {
+            background: #fed7d7;
+            color: #742a2a;
+            border-color: #fc8181;
         }
-
-        .timeline {
-            position: relative;
-            padding: 2rem 0;
+        
+        .risk-medium {
+            background: #fefcbf;
+            color: #744210;
+            border-color: #f6e05e;
         }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: #667eea;
-            transform: translateX(-50%);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin: 2rem 0;
-            padding: 0 2rem;
-        }
-
-        .timeline-item:nth-child(odd) {
-            text-align: right;
-            padding-right: calc(50% + 2rem);
-        }
-
-        .timeline-item:nth-child(even) {
-            text-align: left;
-            padding-left: calc(50% + 2rem);
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: 50%;
-            top: 1rem;
-            width: 16px;
-            height: 16px;
-            background: #667eea;
-            border-radius: 50%;
-            transform: translateX(-50%);
-            border: 4px solid white;
-            box-shadow: 0 0 0 4px #667eea;
-        }
-
-        .timeline-content {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .timeline-title {
-            color: #667eea;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        footer {
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .section {
-                padding: 2rem;
-                margin: 1rem 0;
-            }
-
-            .timeline::before {
-                left: 2rem;
-            }
-
-            .timeline-item {
-                padding-left: 4rem !important;
-                padding-right: 1rem !important;
-                text-align: left !important;
-            }
-
-            .timeline-dot {
-                left: 2rem;
-            }
+        
+        .risk-low {
+            background: #c6f6d5;
+            color: #22543d;
+            border-color: #68d391;
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
         <div class="container">
             <nav class="navbar">
-                <a href="../" class="logo">Tech Challenge Grupo 28 (84)</a>
+                <a href="../index.html" class="logo">Tech <span>Challenge</span> Grupo 28 (84)</a>
                 <ul class="nav-links">
                     <li><a href="#intro">Introdução</a></li>
-                    <li><a href="#arquitetura">Arquitetura</a></li>
-                    <li><a href="#desenvolvimento">Desenvolvimento</a></li>
-                    <li><a href="#devops">DevOps</a></li>
-                    <li><a href="#testes">Testes</a></li>
-                    <li><a href="#performance">Performance</a></li>
-                    <li><a href="#cronograma">Cronograma</a></li>
+                    <li><a href="#arquitetura-empresarial">Arquitetura Empresarial</a></li>
+                    <li><a href="#dominios">Mapeamento de Domínios</a></li>
+                    <li><a href="#direito-digital">Direito Digital</a></li>
+                    <li><a href="#privacy-design">Privacy by Design</a></li>
+                    <li><a href="#riscos">Gestão de Riscos</a></li>
+                    <li><a href="#conclusao">Conclusão</a></li>
                 </ul>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
             </nav>
         </div>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero" id="intro">
         <div class="container">
-            <h1>Tech Challenge <span class="highlight">Fase 3</span></h1>
-            <p>Development & Implementation - Desenvolvimento técnico, arquitetura e implementação</p>
-            <a href="../" class="back-btn">← Voltar ao Início</a>
+            <div class="hero-content">
+                <div class="hero-text animate-on-scroll">
+                    <h1>Tech Challenge <span>Fase 3</span></h1>
+                    <p>IT Architecting & Defining - Arquitetura Empresarial, Direito Digital e Privacidade para o aplicativo móvel focado em idosos para lembretes de medicação, agendamento de consultas, notificações de pagamentos e organização de compromissos sociais.</p>
+                    
+                    <!-- Botão Voltar ao Início -->
+                    <div class="back-button-container" style="margin: 20px 0;">
+                        <a href="../index.html" class="back-button" style="display: inline-block; background: linear-gradient(135deg, #667eea, #764ba2); color: white; text-decoration: none; padding: 12px 24px; border-radius: 25px; font-weight: 500; transition: all 0.3s ease; font-size: 16px;">
+                            ← Voltar ao Início
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image animate-on-scroll">
+                    <img src="../fase1/images/hero-image.jpg" alt="Arquitetura de TI e Privacidade">
+                </div>
+            </div>
         </div>
     </section>
 
-    <div class="container">
-        <!-- Arquitetura de Software -->
-        <section class="section" id="arquitetura">
-            <h2>🏗️ Arquitetura de Software e Tecnologias</h2>
-            
-            <div class="stats">
-                <div class="stat">
-                    <div class="stat-number">Clean</div>
-                    <div class="stat-label">Architecture</div>
+    <!-- Arquitetura Empresarial Section -->
+    <section id="arquitetura-empresarial" class="section-bg">
+        <div class="container">
+            <div class="section-title">
+                <h2>Arquitetura Empresarial (EA)</h2>
+                <p>Modelo de Arquitetura Empresarial utilizando o framework TOGAF para o aplicativo móvel focado em idosos.</p>
+            </div>
+
+            <div class="architecture-diagram animate-on-scroll">
+                <h3><i class="fas fa-building"></i> Framework TOGAF</h3>
+                <p>Para o produto desenvolvido nas Fases 1 e 2, um aplicativo móvel focado em idosos para lembretes de medicação, agendamento de consultas, notificações de pagamentos e organização de compromissos sociais, propõe-se a utilização do framework TOGAF (The Open Group Architecture Framework).</p>
+                
+                <div class="grid">
+                    <div class="card">
+                        <h4><i class="fas fa-expand-arrows-alt"></i> Abrangência</h4>
+                        <p>Permite abordar todos os domínios da arquitetura (Negócio, Dados, Aplicação e Tecnologia), garantindo uma visão completa e integrada do produto.</p>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-cogs"></i> Flexibilidade</h4>
+                        <p>Embora seja um framework robusto, o TOGAF é adaptável a diferentes contextos e tamanhos de projetos, ideal para um MVP que visa escalabilidade futura.</p>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-star"></i> Melhores Práticas</h4>
+                        <p>Baseia-se em um conjunto de melhores práticas, facilitando a comunicação e o alinhamento entre as diversas partes interessadas (stakeholders).</p>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-bullseye"></i> Alinhamento Estratégico</h4>
+                        <p>Facilita o alinhamento da arquitetura de TI com os objetivos de negócio, garantindo que as decisões tecnológicas suportem a estratégia do produto.</p>
+                    </div>
                 </div>
-                <div class="stat">
-                    <div class="stat-number">SOLID</div>
-                    <div class="stat-label">Principles</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mapeamento de Domínios Section -->
+    <section id="dominios">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mapeamento dos Domínios</h2>
+                <p>O mapeamento dos domínios de negócio, dados, aplicações e tecnologia é crucial para entender a estrutura do produto.</p>
+            </div>
+
+            <div class="domain-grid animate-on-scroll">
+                <div class="domain-card">
+                    <h4><i class="fas fa-business-time"></i> Domínio de Negócio</h4>
+                    <p><strong>Foco:</strong> Promoção da autonomia e independência para idosos através da gestão de suas atividades diárias.</p>
+                    <ul>
+                        <li><strong>Gestão de Usuários:</strong> Cadastro, perfil, configurações de acessibilidade, recuperação de senha</li>
+                        <li><strong>Gestão de Lembretes:</strong> Criação, edição, exclusão e notificação de lembretes</li>
+                        <li><strong>Gestão de Agendamentos:</strong> Agendamento e acompanhamento de consultas médicas</li>
+                        <li><strong>Comunicação e Suporte:</strong> Canais de comunicação com usuários e stakeholders</li>
+                        <li><strong>Monetização:</strong> Gestão de funcionalidades freemium/premium e parcerias</li>
+                    </ul>
                 </div>
-                <div class="stat">
-                    <div class="stat-number">DDD</div>
-                    <div class="stat-label">Domain-Driven Design</div>
+
+                <div class="domain-card">
+                    <h4><i class="fas fa-database"></i> Domínio de Dados</h4>
+                    <p><strong>Foco:</strong> Gestão robusta e segura dos dados, coração do aplicativo.</p>
+                    <ul>
+                        <li><strong>Dados de Usuário:</strong> Informações pessoais, preferências de acessibilidade, histórico de uso</li>
+                        <li><strong>Dados de Saúde:</strong> Medicamentos (nome, dosagem, frequência), histórico de consultas</li>
+                        <li><strong>Dados de Compromissos:</strong> Datas, horários, descrições de eventos, status de pagamentos</li>
+                        <li><strong>Dados de Interação:</strong> Logs de uso do aplicativo, feedback, métricas de engajamento</li>
+                        <li><strong>Dados de Monetização:</strong> Assinaturas, histórico de pagamentos, dados de parceiros</li>
+                    </ul>
                 </div>
-                <div class="stat">
-                    <div class="stat-number">Security</div>
-                    <div class="stat-label">by Design</div>
+
+                <div class="domain-card">
+                    <h4><i class="fas fa-mobile-alt"></i> Domínio de Aplicações</h4>
+                    <p><strong>Foco:</strong> Componentes de software baseados em microsserviços para garantir escalabilidade.</p>
+                    <ul>
+                        <li><strong>Aplicativo Móvel (Frontend):</strong> Interface desenvolvida com Flutter para multiplataforma</li>
+                        <li><strong>Serviços de Backend:</strong> Microsserviços para autenticação, lembretes, agendamentos, notificações, pagamentos e relatórios</li>
+                        <li><strong>Painel Administrativo (Web):</strong> Interface para gestão com Sanity.io para gestão de conteúdo sem código</li>
+                    </ul>
+                </div>
+
+                <div class="domain-card">
+                    <h4><i class="fas fa-server"></i> Domínio de Tecnologia</h4>
+                    <p><strong>Foco:</strong> Infraestrutura e ferramentas que suportam as aplicações.</p>
+                    <ul>
+                        <li><strong>Plataforma Cloud:</strong> AWS para hospedagem, garantindo escalabilidade e alta disponibilidade</li>
+                        <li><strong>Bancos de Dados:</strong> NoSQL (MongoDB) para flexibilidade e SQL (PostgreSQL) para integridade</li>
+                        <li><strong>APIs:</strong> RESTful APIs para comunicação entre componentes</li>
+                        <li><strong>CI/CD:</strong> GitHub Actions para automação de integração e entrega contínua</li>
+                        <li><strong>Monitoramento:</strong> Prometheus, Grafana e Loki para observabilidade</li>
+                    </ul>
                 </div>
             </div>
 
-            <div class="tech-stack">
-                <div class="tech-item">
-                    <div class="tech-icon">📱</div>
-                    <div class="tech-name">React Native</div>
-                    <div class="tech-desc">Cross-platform mobile com TypeScript</div>
-                </div>
-                <div class="tech-item">
-                    <div class="tech-icon">⚡</div>
-                    <div class="tech-name">Node.js + Express</div>
-                    <div class="tech-desc">Backend escalável e performático</div>
-                </div>
-                <div class="tech-item">
-                    <div class="tech-icon">🐘</div>
-                    <div class="tech-name">PostgreSQL</div>
-                    <div class="tech-desc">Banco robusto com ACID compliance</div>
-                </div>
-                <div class="tech-item">
-                    <div class="tech-icon">🚀</div>
-                    <div class="tech-name">Redis</div>
-                    <div class="tech-desc">Cache distribuído e sessões</div>
-                </div>
-                <div class="tech-item">
-                    <div class="tech-icon">🐳</div>
-                    <div class="tech-name">Docker</div>
-                    <div class="tech-desc">Containerização e deployment</div>
-                </div>
+            <div class="tech-stack-grid animate-on-scroll">
                 <div class="tech-item">
                     <div class="tech-icon">☁️</div>
-                    <div class="tech-name">AWS/Azure</div>
-                    <div class="tech-desc">Infraestrutura em nuvem</div>
+                    <div class="tech-name">AWS Cloud</div>
+                    <div class="tech-desc">Infraestrutura escalável e confiável</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">📱</div>
+                    <div class="tech-name">Flutter</div>
+                    <div class="tech-desc">Desenvolvimento multiplataforma</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🔄</div>
+                    <div class="tech-name">Microsserviços</div>
+                    <div class="tech-desc">Arquitetura modular e escalável</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🛡️</div>
+                    <div class="tech-name">Segurança</div>
+                    <div class="tech-desc">Proteção de dados sensíveis</div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="cards-grid">
-                <div class="card">
-                    <h3>🎯 Princípios Arquiteturais</h3>
-                    <p><strong>Separation of Concerns:</strong> Cada camada com responsabilidades bem definidas<br>
-                    <strong>Dependency Inversion:</strong> Abstrações definem contratos claros<br>
-                    <strong>Single Responsibility:</strong> Uma razão para mudança por módulo<br>
-                    <strong>Open/Closed:</strong> Extensível sem modificar código existente</p>
-                </div>
-                <div class="card">
-                    <h3>🔒 Segurança Integrada</h3>
-                    <p><strong>MFA Adaptado:</strong> Multi-fator amigável para idosos<br>
-                    <strong>Criptografia E2E:</strong> AES-256 + TLS 1.3<br>
-                    <strong>RBAC:</strong> Controle de acesso baseado em roles<br>
-                    <strong>OWASP Top 10:</strong> Mitigação completa</p>
-                </div>
-                <div class="card">
-                    <h3>📊 Domain-Driven Design</h3>
-                    <p><strong>Bounded Contexts:</strong> User, Health, Notifications, Social<br>
-                    <strong>Aggregates:</strong> Proteção de invariantes de negócio<br>
-                    <strong>Domain Events:</strong> Comunicação assíncrona<br>
-                    <strong>Repository Pattern:</strong> Abstração de persistência</p>
-                </div>
-                <div class="card">
-                    <h3>⚡ Performance & Escala</h3>
-                    <p><strong>Horizontal Scaling:</strong> Arquitetura stateless<br>
-                    <strong>Load Balancing:</strong> ALB com health checks<br>
-                    <strong>Auto Scaling:</strong> Baseado em métricas customizadas<br>
-                    <strong>Database Scaling:</strong> Read replicas e partitioning</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Metodologias de Desenvolvimento -->
-        <section class="section" id="desenvolvimento">
-            <h2>💻 Metodologias de Desenvolvimento e Qualidade</h2>
-            
-            <div class="cards-grid">
-                <div class="card">
-                    <h3>🧹 Clean Code Principles</h3>
-                    <p><strong>Nomenclatura Significativa:</strong> Nomes expressam intenção sem comentários<br>
-                    <strong>Funções Pequenas:</strong> Uma responsabilidade, < 20 linhas<br>
-                    <strong>Single Level of Abstraction:</strong> Cada função em um nível<br>
-                    <strong>Command Query Separation:</strong> Fazem algo OU retornam algo</p>
-                </div>
-                <div class="card">
-                    <h3>🏗️ Princípios SOLID</h3>
-                    <p><strong>SRP:</strong> Uma única razão para mudança<br>
-                    <strong>OCP:</strong> Aberto para extensão, fechado para modificação<br>
-                    <strong>LSP:</strong> Subclasses substituem classes base<br>
-                    <strong>ISP:</strong> Interfaces pequenas e específicas<br>
-                    <strong>DIP:</strong> Dependência de abstrações, não implementações</p>
-                </div>
-                <div class="card">
-                    <h3>🎨 Design Patterns</h3>
-                    <p><strong>Repository:</strong> Abstração de acesso a dados<br>
-                    <strong>Factory:</strong> Criação de objetos complexos<br>
-                    <strong>Observer:</strong> Sistema de eventos assíncronos<br>
-                    <strong>Strategy:</strong> Algoritmos intercambiáveis<br>
-                    <strong>Command:</strong> Operações como objetos</p>
-                </div>
-                <div class="card">
-                    <h3>🔍 Code Review & Qualidade</h3>
-                    <p><strong>Pull Request Obrigatório:</strong> Revisão antes de merge<br>
-                    <strong>Automated Checks:</strong> Testes, linting, segurança<br>
-                    <strong>Métricas:</strong> Cobertura > 80%, complexidade < 10<br>
-                    <strong>Documentation:</strong> JSDoc, ADRs, README técnico</p>
-                </div>
+    <!-- Direito Digital Section -->
+    <section id="direito-digital" class="section-bg">
+        <div class="container">
+            <div class="section-title">
+                <h2>Direito Digital e Privacidade</h2>
+                <p>Análise dos impactos regulatórios e diretrizes de governança digital para conformidade legal.</p>
             </div>
 
-            <div class="code-block">
-// Exemplo de Clean Code com SOLID
-interface MedicationRepository {
-  findById(id: string): Promise&lt;Medication | null&gt;;
-  save(medication: Medication): Promise&lt;void&gt;;
-  findByUserId(userId: string): Promise&lt;Medication[]&gt;;
-}
-
-class MedicationValidator {
-  validateDosage(medication: Medication): boolean {
-    return medication.dosage > 0 && medication.dosage <= 1000;
-  }
-}
-
-class ReminderService {
-  constructor(private notificationStrategy: NotificationStrategy) {}
-  
-  async sendReminder(medication: Medication): Promise&lt;void&gt; {
-    await this.notificationStrategy.send(medication);
-  }
-}
-            </div>
-        </section>
-
-        <!-- DevOps e CI/CD -->
-        <section class="section" id="devops">
-            <h2>🚀 DevOps e CI/CD Pipeline</h2>
-            
-            <div class="cards-grid">
-                <div class="card">
-                    <h3>🔄 Cultura DevOps</h3>
-                    <p><strong>Colaboração Contínua:</strong> Dev + Ops integrados<br>
-                    <strong>Responsabilidade Compartilhada:</strong> Equipe assume produção<br>
-                    <strong>Feedback Loops:</strong> Métricas influenciam desenvolvimento<br>
-                    <strong>Automação First:</strong> Processos manuais automatizados</p>
-                </div>
-                <div class="card">
-                    <h3>🏗️ Infrastructure as Code</h3>
-                    <p><strong>Terraform:</strong> Provisionamento versionado<br>
-                    <strong>Ansible:</strong> Configuração de servidores<br>
-                    <strong>Docker:</strong> Containerização padronizada<br>
-                    <strong>Kubernetes:</strong> Orquestração e scaling</p>
-                </div>
-                <div class="card">
-                    <h3>📊 Observabilidade</h3>
-                    <p><strong>Metrics:</strong> Prometheus + Grafana<br>
-                    <strong>Logs:</strong> ELK Stack centralizados<br>
-                    <strong>Traces:</strong> Jaeger distributed tracing<br>
-                    <strong>Alerting:</strong> SLI-based com PagerDuty</p>
-                </div>
-                <div class="card">
-                    <h3>🔄 CI/CD Pipeline</h3>
-                    <p><strong>Continuous Integration:</strong> Build matrix paralelo<br>
-                    <strong>Quality Gates:</strong> Security, performance, a11y<br>
-                    <strong>Blue-Green Deploy:</strong> Zero-downtime deployment<br>
-                    <strong>Canary Releases:</strong> Rollout gradual controlado</p>
-                </div>
-            </div>
-
-            <div class="code-block">
-# GitHub Actions CI/CD Pipeline
-name: CI/CD Pipeline
-on:
-  push:
-    branches: [ main, develop ]
-  pull_request:
-    branches: [ main ]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.x, 18.x, 20.x]
-    
-    steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-    - run: npm ci
-    - run: npm run lint
-    - run: npm run test:unit
-    - run: npm run test:integration
-            </div>
-        </section>
-
-        <!-- Testes Automatizados -->
-        <section class="section" id="testes">
-            <h2>🧪 Testes Automatizados e Qualidade</h2>
-            
-            <div class="stats">
-                <div class="stat">
-                    <div class="stat-number">70%</div>
-                    <div class="stat-label">Unit Tests</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">20%</div>
-                    <div class="stat-label">Integration Tests</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">10%</div>
-                    <div class="stat-label">E2E Tests</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">80%+</div>
-                    <div class="stat-label">Code Coverage</div>
-                </div>
-            </div>
-
-            <div class="cards-grid">
-                <div class="card">
-                    <h3>🔺 Test Pyramid</h3>
-                    <p><strong>Unit Tests (Base):</strong> Rápidos, determinísticos, lógica de negócio<br>
-                    <strong>Integration Tests:</strong> APIs, banco, serviços externos<br>
-                    <strong>E2E Tests (Topo):</strong> Jornadas completas do usuário<br>
-                    <strong>TDD/BDD:</strong> Red-Green-Refactor + Gherkin scenarios</p>
-                </div>
-                <div class="card">
-                    <h3>🛠️ Ferramentas</h3>
-                    <p><strong>Jest + TypeScript:</strong> Framework de testes robusto<br>
-                    <strong>Testing Library:</strong> Testes focados no usuário<br>
-                    <strong>MSW:</strong> Mock Service Worker para APIs<br>
-                    <strong>Detox:</strong> E2E testing para React Native</p>
-                </div>
-                <div class="card">
-                    <h3>🎯 Padrões de Teste</h3>
-                    <p><strong>AAA Pattern:</strong> Arrange-Act-Assert estruturado<br>
-                    <strong>Test Builders:</strong> Criação de dados de teste<br>
-                    <strong>Boundary Testing:</strong> Valores limites e extremos<br>
-                    <strong>Error Conditions:</strong> Cenários de falha</p>
-                </div>
-                <div class="card">
-                    <h3>📊 Performance Testing</h3>
-                    <p><strong>Artillery.js:</strong> Testes de carga automatizados<br>
-                    <strong>Clinic.js:</strong> Profiling de Node.js<br>
-                    <strong>Flipper:</strong> Performance mobile<br>
-                    <strong>Lighthouse:</strong> Web performance metrics</p>
-                </div>
-            </div>
-
-            <div class="code-block">
-// Exemplo de teste BDD com Gherkin
-Feature: Medication Reminder
-  As a senior user
-  I want to receive timely medication reminders
-  So that I don't forget to take my prescribed medications
-
-  Scenario: Successful medication reminder
-    Given I have configured a medication "Aspirina" for 8:00 AM daily
-    And it is currently 8:00 AM
-    When the reminder system checks for due medications
-    Then I should receive a push notification
-    And the notification should include medication name and dosage
-            </div>
-        </section>
-
-        <!-- Performance e Escalabilidade -->
-        <section class="section" id="performance">
-            <h2>⚡ Performance e Escalabilidade</h2>
-            
-            <div class="cards-grid">
-                <div class="card">
-                    <h3>📱 Frontend Performance</h3>
-                    <p><strong>Bundle Optimization:</strong> Code splitting e lazy loading<br>
-                    <strong>Image Optimization:</strong> WebP com fallback JPEG<br>
-                    <strong>Caching Strategy:</strong> Cache inteligente com TTL<br>
-                    <strong>Memory Management:</strong> Otimizado para dispositivos antigos</p>
-                </div>
-                <div class="card">
-                    <h3>⚙️ Backend Performance</h3>
-                    <p><strong>Database Optimization:</strong> Índices estratégicos<br>
-                    <strong>Connection Pooling:</strong> Balanceio performance/recursos<br>
-                    <strong>Response Compression:</strong> Gzip/Brotli automático<br>
-                    <strong>Query Optimization:</strong> N+1 prevention</p>
-                </div>
-                <div class="card">
-                    <h3>📈 Horizontal Scaling</h3>
-                    <p><strong>Stateless Architecture:</strong> Instâncias independentes<br>
-                    <strong>Load Balancing:</strong> ALB com health checks<br>
-                    <strong>Auto Scaling:</strong> Métricas customizadas<br>
-                    <strong>Database Scaling:</strong> Read replicas e sharding</p>
-                </div>
-                <div class="card">
-                    <h3>💾 Multi-Layer Caching</h3>
-                    <p><strong>Application Cache:</strong> NodeCache em memória<br>
-                    <strong>Redis Cache:</strong> Cache distribuído<br>
-                    <strong>CDN Caching:</strong> Assets estáticos globais<br>
-                    <strong>Database Cache:</strong> Query result caching</p>
-                </div>
-            </div>
-
-            <div class="code-block">
-// Exemplo de otimização com cache
-const medicationCache = new Map&lt;string, { data: Medication[], timestamp: number }&gt;();
-
-const getMedications = async (userId: string): Promise&lt;Medication[]&gt; => {
-  const cached = medicationCache.get(userId);
-  const now = Date.now();
-  
-  if (cached && (now - cached.timestamp) < 300000) { // 5 minutos
-    return cached.data;
-  }
-  
-  const medications = await medicationRepository.findByUserId(userId);
-  medicationCache.set(userId, { data: medications, timestamp: now });
-  
-  return medications;
-};
-            </div>
-        </section>
-
-        <!-- Cronograma -->
-        <section class="section" id="cronograma">
-            <h2>📅 Cronograma de Implementação</h2>
-            
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-title">Sprint 1-2: Fundação Técnica</div>
-                        <p>Setup de infraestrutura, CI/CD, arquitetura base, monitoramento e segurança básica</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-title">Sprint 3-6: Core Features</div>
-                        <p>APIs principais, autenticação, interfaces mobile, integração com banco, testes unitários</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-title">Sprint 7-10: Integração</div>
-                        <p>Serviços externos, testes E2E, otimização de performance, hardening de segurança</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-title">Sprint 11-12: Lançamento</div>
-                        <p>Testes de carga, deployment produção, monitoramento pós-lançamento, documentação final</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="stats">
-                <div class="stat">
-                    <div class="stat-number">24</div>
-                    <div class="stat-label">Semanas de Desenvolvimento</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">80%+</div>
-                    <div class="stat-label">Code Coverage Target</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">99.9%</div>
-                    <div class="stat-label">Availability SLA</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">&lt; 200ms</div>
-                    <div class="stat-label">Response Time (95th)</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Conclusão -->
-        <section class="section">
-            <h2>🎯 Conclusão e Próximos Passos</h2>
-            
-            <div class="card">
-                <h3>✅ Fatores Críticos de Sucesso</h3>
-                <p>A Fase 3 estabelece as fundações técnicas sólidas necessárias para o sucesso do aplicativo SeniorCare. Através da implementação de arquitetura robusta, práticas de desenvolvimento de qualidade, automação DevOps e foco em performance e segurança, criamos a base técnica para impactar positivamente a vida de milhares de idosos.</p>
+            <div class="design-thinking-item animate-on-scroll">
+                <h3><i class="fas fa-gavel"></i> Impactos Regulatórios</h3>
+                <p>O desenvolvimento e operação do aplicativo estão sujeitos a um rigoroso arcabouço regulatório, especialmente no que tange à proteção de dados pessoais.</p>
                 
-                <div style="margin-top: 2rem;">
-                    <strong>🚀 Transição para Fase 4:</strong><br>
-                    Com a base técnica estabelecida, a <strong>Fase 4: Launch & Growth</strong> focará na estratégia go-to-market, marketing digital, análise de dados e crescimento do produto. A transição natural será do desenvolvimento técnico para a conquista e retenção de usuários no mercado.
+                <div class="grid">
+                    <div class="card">
+                        <h4><i class="fas fa-flag-usa"></i> Marco Civil da Internet</h4>
+                        <p><strong>Lei nº 12.965/2014</strong></p>
+                        <ul>
+                            <li><strong>Privacidade:</strong> Inviolabilidade e sigilo do fluxo de comunicações</li>
+                            <li><strong>Neutralidade da Rede:</strong> Tratamento isonômico de dados</li>
+                            <li><strong>Responsabilidade:</strong> Políticas claras de uso e moderação</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-shield-alt"></i> LGPD</h4>
+                        <p><strong>Lei nº 13.709/2018</strong></p>
+                        <ul>
+                            <li><strong>Bases Legais:</strong> Consentimento e execução de contrato</li>
+                            <li><strong>Direitos dos Titulares:</strong> Acesso, retificação, eliminação, portabilidade</li>
+                            <li><strong>Dados Sensíveis:</strong> Dados de saúde exigem consentimento específico</li>
+                            <li><strong>DPO:</strong> Encarregado de Dados para comunicação com ANPD</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-globe-europe"></i> GDPR</h4>
+                        <p><strong>Regulamento UE 2016/679</strong></p>
+                        <ul>
+                            <li><strong>Escopo Territorial:</strong> Aplica-se a empresas que processam dados de cidadãos da UE</li>
+                            <li><strong>Multas:</strong> Até 20 milhões de euros ou 4% do faturamento global</li>
+                            <li><strong>Direito ao Esquecimento:</strong> Eliminação de dados em determinadas circunstâncias</li>
+                            <li><strong>Privacy by Design:</strong> Proteção incorporada desde a concepção</li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div style="margin-top: 2rem;">
-                    <strong>📊 Métricas de Sucesso:</strong><br>
-                    <strong>Técnicas:</strong> Code Coverage > 80%, Build Time < 10min, MTTR < 30min<br>
-                    <strong>Qualidade:</strong> Bug Rate < 0.1/SP, 0 vulnerabilidades críticas, 99.9% uptime<br>
-                    <strong>Performance:</strong> 95% requests < 200ms, User Satisfaction > 4.5/5
+                <div class="compliance-badge risk-low">Marco Civil - Conforme</div>
+                <div class="compliance-badge risk-low">LGPD - Conforme</div>
+                <div class="compliance-badge risk-medium">GDPR - Preparação</div>
+            </div>
+
+            <div class="design-thinking-item animate-on-scroll">
+                <h3><i class="fas fa-clipboard-list"></i> Diretrizes de Governança Digital</h3>
+                <p>Estabelecimento de diretrizes claras de governança digital e políticas de uso e proteção de dados.</p>
+                
+                <div class="grid">
+                    <div class="card">
+                        <h4><i class="fas fa-file-contract"></i> Política de Privacidade</h4>
+                        <p>Documento claro, conciso e acessível, explicando quais dados são coletados, por que, como são usados, com quem são compartilhados e por quanto tempo são armazenados.</p>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-handshake"></i> Termos de Uso</h4>
+                        <p>Regras e condições para a utilização do aplicativo, incluindo direitos e deveres dos usuários e da empresa.</p>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-check-circle"></i> Gestão de Consentimento</h4>
+                        <p>Mecanismos claros e granulares para obtenção e gestão do consentimento dos usuários, especialmente para dados sensíveis.</p>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-exclamation-triangle"></i> Resposta a Incidentes</h4>
+                        <p>Plano de resposta a incidentes de segurança e vazamento de dados, incluindo comunicação com a ANPD e os titulares dos dados.</p>
+                    </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 
+    <!-- Privacy by Design Section -->
+    <section id="privacy-design">
+        <div class="container">
+            <div class="section-title">
+                <h2>Privacy by Design e Privacy by Default</h2>
+                <p>Aplicação dos princípios fundamentais para integrar a privacidade desde o início do ciclo de vida do produto.</p>
+            </div>
+
+            <div class="design-thinking-item animate-on-scroll">
+                <h3><i class="fas fa-shield-alt"></i> Privacy by Design (PbD)</h3>
+                <p>Integração da privacidade desde a concepção de sistemas, produtos e serviços.</p>
+                
+                <div class="grid">
+                    <div class="card">
+                        <h4><i class="fas fa-eye"></i> Proativo, não reativo</h4>
+                        <p>Antecipar e prevenir problemas de privacidade. Considerar desde o início como os dados de saúde serão protegidos contra acessos não autorizados.</p>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-lock"></i> Privacidade incorporada ao design</h4>
+                        <p>A privacidade deve ser um componente essencial do design. Criptografia de ponta a ponta e armazenamento seguro como parte integrante da arquitetura.</p>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-balance-scale"></i> Funcionalidade total</h4>
+                        <p>Garantir a privacidade sem comprometer a funcionalidade. Lembretes eficazes e agendamentos protegendo os dados dos usuários.</p>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-sync-alt"></i> Segurança de ponta a ponta</h4>
+                        <p>Proteger os dados pessoais durante todo o seu ciclo de vida, desde a coleta até a eliminação. Criptografia em trânsito e em repouso.</p>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-search"></i> Visibilidade e transparência</h4>
+                        <p>Os processos de tratamento de dados devem ser visíveis e transparentes para os usuários. Informações claras e compreensíveis para os idosos.</p>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-heart"></i> Respeito pela privacidade do usuário</h4>
+                        <p>Colocar o usuário no centro do design, respeitando seus direitos e interesses. Controles fáceis para gerenciar configurações de privacidade.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="design-thinking-item animate-on-scroll">
+                <h3><i class="fas fa-cog"></i> Privacy by Default (PbD)</h3>
+                <p>As configurações mais protetivas de privacidade devem ser as configurações padrão, sem necessidade de intervenção do usuário.</p>
+                
+                <div class="grid">
+                    <div class="card">
+                        <h4><i class="fas fa-share-alt"></i> Compartilhamento de Dados</h4>
+                        <p>Por padrão, o aplicativo não deve compartilhar dados com terceiros, a menos que o usuário explicitamente consinta.</p>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-bell"></i> Notificações</h4>
+                        <p>As configurações de notificação devem ser configuradas para o mínimo necessário por padrão, permitindo que o usuário ative mais notificações se desejar.</p>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-universal-access"></i> Acessibilidade</h4>
+                        <p>As configurações de acessibilidade (tamanho da fonte, contraste) podem ser configuradas para um nível básico de conforto por padrão.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gestão de Riscos Section -->
+    <section id="riscos" class="section-bg">
+        <div class="container">
+            <div class="section-title">
+                <h2>Identificação de Riscos Regulatórios e Ações Mitigadoras</h2>
+                <p>Análise dos principais riscos regulatórios e proposição de ações mitigadoras específicas.</p>
+            </div>
+
+            <div class="animate-on-scroll">
+                <table class="privacy-table">
+                    <thead>
+                        <tr>
+                            <th>Risco Regulatório</th>
+                            <th>Descrição</th>
+                            <th>Ação Mitigadora Proposta</th>
+                            <th>Nível</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Vazamento de Dados</strong></td>
+                            <td>Exposição não autorizada de dados pessoais, especialmente dados de saúde sensíveis.</td>
+                            <td>Implementação de criptografia robusta (em repouso e em trânsito), controle de acesso baseado em função (RBAC), auditorias de segurança regulares, plano de resposta a incidentes bem definido.</td>
+                            <td><span class="compliance-badge risk-high">Alto</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Não Conformidade com Consentimento</strong></td>
+                            <td>Coleta ou tratamento de dados sem o consentimento adequado ou sem base legal válida.</td>
+                            <td>Mecanismos claros de obtenção e gestão de consentimento, revisão jurídica das bases legais para cada tipo de tratamento de dados, treinamento da equipe sobre LGPD/GDPR.</td>
+                            <td><span class="compliance-badge risk-medium">Médio</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Reidentificação de Dados Anonimizados</strong></td>
+                            <td>Possibilidade de reverter a anonimização de dados, especialmente em análises de Big Data ou com dados sintéticos.</td>
+                            <td>Uso de técnicas avançadas de anonimização e pseudonimização, avaliação de risco de reidentificação, uso de dados sintéticos para testes e desenvolvimento sempre que possível.</td>
+                            <td><span class="compliance-badge risk-medium">Médio</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Falha na Portabilidade de Dados</strong></td>
+                            <td>Incapacidade de fornecer dados do usuário em formato estruturado e legível por máquina quando solicitado.</td>
+                            <td>Desenvolvimento de APIs específicas para exportação de dados, padronização de formatos de dados (JSON, CSV), testes regulares de funcionalidade de portabilidade.</td>
+                            <td><span class="compliance-badge risk-low">Baixo</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Violação de Direitos dos Titulares</strong></td>
+                            <td>Falha em atender solicitações de acesso, retificação, eliminação ou oposição ao tratamento de dados.</td>
+                            <td>Sistema automatizado para gestão de solicitações de direitos dos titulares, SLA definido para resposta (máximo 15 dias), treinamento da equipe de suporte.</td>
+                            <td><span class="compliance-badge risk-medium">Médio</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="design-thinking-item animate-on-scroll">
+                <h3><i class="fas fa-chart-line"></i> Monitoramento Contínuo</h3>
+                <p>Implementação de um sistema de monitoramento contínuo para identificar e mitigar riscos de forma proativa.</p>
+                
+                <div class="grid">
+                    <div class="card">
+                        <h4><i class="fas fa-search"></i> Auditorias Regulares</h4>
+                        <p>Realização de auditorias periódicas para verificar a conformidade com as políticas e regulamentações, incluindo testes de penetração e avaliações de vulnerabilidade.</p>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-graduation-cap"></i> Treinamento Contínuo</h4>
+                        <p>Treinamento regular para a equipe sobre as políticas de privacidade e proteção de dados, mantendo todos atualizados sobre mudanças regulatórias.</p>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-chart-bar"></i> Métricas de Conformidade</h4>
+                        <p>Estabelecimento de KPIs para monitorar a conformidade, incluindo tempo de resposta a solicitações de titulares e taxa de incidentes de segurança.</p>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-sync"></i> Melhoria Contínua</h4>
+                        <p>Processo de melhoria contínua baseado em feedback, incidentes e mudanças regulatórias, garantindo adaptação constante às melhores práticas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusão Section -->
+    <section id="conclusao">
+        <div class="container">
+            <div class="section-title">
+                <h2>Conclusão</h2>
+                <p>Síntese da arquitetura proposta e próximos passos para implementação.</p>
+            </div>
+
+            <div class="design-thinking-item animate-on-scroll">
+                <h3><i class="fas fa-check-circle"></i> Sustentação da Gestão de Plataformas e Produtos</h3>
+                <p>A arquitetura proposta, baseada em microsserviços e nuvem, sustenta a gestão de plataformas e produtos de diversas formas:</p>
+                
+                <div class="grid">
+                    <div class="card">
+                        <h4><i class="fas fa-expand-arrows-alt"></i> Escalabilidade</h4>
+                        <p>A modularidade dos microsserviços permite escalar componentes individualmente conforme a demanda, otimizando custos e performance.</p>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-shield-alt"></i> Resiliência</h4>
+                        <p>Falhas em um microsserviço não afetam todo o sistema, aumentando a disponibilidade do produto.</p>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-rocket"></i> Agilidade no Desenvolvimento</h4>
+                        <p>Equipes podem trabalhar em microsserviços independentes, acelerando o ciclo de desenvolvimento e entrega de novas funcionalidades.</p>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-lightbulb"></i> Inovação</h4>
+                        <p>Facilita a experimentação com novas tecnologias em serviços específicos sem impactar a plataforma como um todo.</p>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-tools"></i> Manutenibilidade</h4>
+                        <p>A separação de responsabilidades torna a manutenção e atualização de cada serviço mais simples e menos arriscada.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="design-thinking-item animate-on-scroll">
+                <h3><i class="fas fa-road"></i> Justificativa das Escolhas Metodológicas</h3>
+                <p>As escolhas metodológicas e tecnológicas estão alinhadas com o roadmap do produto, que prevê um crescimento gradual e a adição contínua de funcionalidades:</p>
+                
+                <ul>
+                    <li><strong>Design Thinking e Lean Startup:</strong> Utilizados nas fases iniciais para validação do MVP e entendimento das dores do usuário</li>
+                    <li><strong>Scrum:</strong> Framework ágil para gestão do desenvolvimento, promovendo entregas incrementais e feedback contínuo</li>
+                    <li><strong>DevOps e CI/CD:</strong> Essenciais para automatizar o ciclo de vida do software, garantindo qualidade, velocidade e estabilidade</li>
+                    <li><strong>DDD e Event Storming:</strong> Aplicados na modelagem de domínio para garantir que a arquitetura reflita a complexidade do negócio</li>
+                </ul>
+            </div>
+
+            <div class="design-thinking-item animate-on-scroll">
+                <h3><i class="fas fa-flag-checkered"></i> Próximos Passos</h3>
+                <p>Este modelo de Arquitetura Empresarial visa criar uma base sólida e flexível para o desenvolvimento e evolução do produto, garantindo que ele atenda às necessidades dos usuários e aos objetivos de negócio a longo prazo.</p>
+                
+                <div class="grid">
+                    <div class="card">
+                        <h4>Fase 4 - Implementação</h4>
+                        <p>Desenvolvimento técnico dos microsserviços e implementação da arquitetura proposta.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Fase 5 - Testes e Deploy</h4>
+                        <p>Testes de integração, segurança e performance, seguidos do deploy em produção.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <p><strong>Tech Challenge - Fase 3: Development & Implementation</strong></p>
-            <p>Desenvolvido pelo Grupo 28 (84) • Julho 2025</p>
-            <p>Desenvolvimento técnico, arquitetura e implementação de classe mundial</p>
+            <p>&copy; 2024 Tech Challenge - Grupo 28 (84). Todos os direitos reservados.</p>
+            <p>Arquitetura Empresarial e Direito Digital para aplicativo móvel focado em idosos.</p>
         </div>
     </footer>
+
+    <script src="../fase1/js/main.js"></script>
 </body>
 </html>
-
