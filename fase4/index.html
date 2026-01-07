@@ -3,880 +3,908 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Challenge Fase 4 - Launch & Growth</title>
+    <title>Tech Challenge Fase 4 - IT Product Development</title>
+    <link rel="stylesheet" href="../fase1/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #ff6b6b;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .nav-links a:hover {
-            color: #ff6b6b;
-        }
-
-        .hero {
-            padding: 4rem 0;
-            text-align: center;
-            color: white;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .hero .highlight {
-            color: #ffd700;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .section {
-            background: white;
+        .architecture-diagram {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
             margin: 2rem 0;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #667eea;
         }
-
-        .section h2 {
-            font-size: 2.5rem;
-            color: #ff6b6b;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .cards-grid {
+        
+        .evolution-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin: 2rem 0;
         }
-
-        .card {
-            background: #fff5f5;
-            padding: 2rem;
+        
+        .evolution-card {
+            background: white;
             border-radius: 15px;
-            border-left: 5px solid #ff6b6b;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #667eea;
             transition: transform 0.3s ease;
         }
-
-        .card:hover {
+        
+        .evolution-card:hover {
             transform: translateY(-5px);
         }
-
-        .card h3 {
-            color: #ff6b6b;
+        
+        .evolution-card h4 {
+            color: #667eea;
             margin-bottom: 1rem;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
-
-        .card p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .stat {
-            text-align: center;
-            padding: 2rem;
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            color: white;
-            border-radius: 15px;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-
-        .funnel {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .funnel-step {
-            background: linear-gradient(135deg, #fff5f5, #ffe8e8);
-            padding: 1.5rem;
-            border-radius: 12px;
-            text-align: center;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .funnel-step:hover {
-            border-color: #ff6b6b;
-            transform: translateY(-3px);
-        }
-
-        .funnel-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .funnel-title {
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 0.5rem;
-        }
-
-        .funnel-desc {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .metrics-table {
+        
+        .governance-table {
             width: 100%;
             border-collapse: collapse;
             margin: 2rem 0;
             background: white;
-            border-radius: 12px;
+            border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-
-        .metrics-table th {
-            background: #ff6b6b;
-            color: white;
+        
+        .governance-table th,
+        .governance-table td {
             padding: 1rem;
-            text-align: left;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .governance-table th {
+            background: #667eea;
+            color: white;
             font-weight: 600;
         }
-
-        .metrics-table td {
-            padding: 1rem;
-            border-bottom: 1px solid #eee;
+        
+        .governance-table tr:hover {
+            background: #f8f9ff;
         }
-
-        .metrics-table tr:hover {
-            background: #fff5f5;
-        }
-
-        .back-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 500;
+        
+        .risk-table {
+            width: 100%;
+            border-collapse: collapse;
             margin: 2rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .risk-table th,
+        .risk-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .risk-table th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .risk-table tr:hover {
+            background: #f8f9ff;
+        }
+        
+        .data-stack-diagram {
+            background: linear-gradient(135deg, #f8f9ff, #e8e9ff);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .pipeline-diagram {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 2px solid #667eea;
+        }
+        
+        .integration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .integration-card {
+            background: linear-gradient(135deg, #f8f9ff, #e8e9ff);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 2px solid transparent;
             transition: all 0.3s ease;
         }
-
-        .back-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        
+        .integration-card:hover {
+            border-color: #667eea;
+            transform: translateY(-3px);
         }
-
-        .timeline {
+        
+        .tech-badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin: 0.25rem;
+        }
+        
+        .hype-cycle-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hype-cycle-table th,
+        .hype-cycle-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .hype-cycle-table th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .timeline-container {
             position: relative;
             padding: 2rem 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: #ff6b6b;
-            transform: translateX(-50%);
-        }
-
-        .timeline-item {
-            position: relative;
             margin: 2rem 0;
-            padding: 0 2rem;
         }
-
-        .timeline-item:nth-child(odd) {
-            text-align: right;
-            padding-right: calc(50% + 2rem);
+        
+        .timeline-item {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #667eea;
         }
-
-        .timeline-item:nth-child(even) {
-            text-align: left;
-            padding-left: calc(50% + 2rem);
+        
+        .timeline-item h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
         }
-
-        .timeline-dot {
-            position: absolute;
-            left: 50%;
-            top: 1rem;
-            width: 16px;
-            height: 16px;
-            background: #ff6b6b;
-            border-radius: 50%;
-            transform: translateX(-50%);
-            border: 4px solid white;
-            box-shadow: 0 0 0 4px #ff6b6b;
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea15, #764ba215);
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
         }
-
-        .timeline-content {
+        
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .kpi-card {
             background: white;
             padding: 1.5rem;
             border-radius: 12px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .timeline-title {
-            color: #ff6b6b;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .growth-chart {
-            background: #fff5f5;
-            padding: 2rem;
-            border-radius: 15px;
-            margin: 2rem 0;
-        }
-
-        .chart-bars {
-            display: flex;
-            align-items: end;
-            gap: 1rem;
-            height: 200px;
-            margin: 2rem 0;
-        }
-
-        .chart-bar {
-            flex: 1;
-            background: linear-gradient(to top, #ff6b6b, #ee5a24);
-            border-radius: 8px 8px 0 0;
-            position: relative;
-            display: flex;
-            align-items: end;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-            padding: 0.5rem;
-        }
-
-        .chart-label {
             text-align: center;
-            margin-top: 0.5rem;
-            font-size: 0.9rem;
-            color: #666;
         }
-
-        footer {
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .section {
-                padding: 2rem;
-                margin: 1rem 0;
-            }
-
-            .timeline::before {
-                left: 2rem;
-            }
-
-            .timeline-item {
-                padding-left: 4rem !important;
-                padding-right: 1rem !important;
-                text-align: left !important;
-            }
-
-            .timeline-dot {
-                left: 2rem;
-            }
-
-            .funnel {
-                grid-template-columns: 1fr;
-            }
-
-            .chart-bars {
-                height: 150px;
-            }
+        
+        .kpi-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+            margin: 0.5rem 0;
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
         <div class="container">
             <nav class="navbar">
-                <a href="../" class="logo">Tech Challenge Grupo 28 (84)</a>
+                <a href="../index.html" class="logo">Tech <span>Challenge</span> Grupo 28 (84)</a>
                 <ul class="nav-links">
                     <li><a href="#intro">Introdução</a></li>
-                    <li><a href="#go-to-market">Go-to-Market</a></li>
-                    <li><a href="#marketing">Marketing</a></li>
-                    <li><a href="#analytics">Analytics</a></li>
-                    <li><a href="#customer-success">Customer Success</a></li>
-                    <li><a href="#parcerias">Parcerias</a></li>
-                    <li><a href="#cronograma">Cronograma</a></li>
+                    <li><a href="#arquitetura">Arquitetura de Software</a></li>
+                    <li><a href="#governanca">Governança e Riscos</a></li>
+                    <li><a href="#dados-ia">Dados e IA</a></li>
+                    <li><a href="#devsecops">DevSecOps</a></li>
+                    <li><a href="#ecossistema">Ecossistema Digital</a></li>
+                    <li><a href="#conclusao">Conclusão</a></li>
                 </ul>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
             </nav>
         </div>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero" id="intro">
         <div class="container">
-            <h1>Tech Challenge <span class="highlight">Fase 4</span></h1>
-            <p>Launch & Growth - Lançamento, marketing digital, métricas e crescimento</p>
-            <a href="../" class="back-btn">← Voltar ao Início</a>
+            <div class="hero-content">
+                <div class="hero-text animate-on-scroll">
+                    <h1>Tech Challenge <span>Fase 4</span></h1>
+                    <h2 style="color: #667eea; margin-bottom: 1rem;">IT Product Development</h2>
+                    <p>Consolidação técnica da Fase 4 do Tech Challenge, onde assumimos o papel de <strong>Tech Manager</strong> para fortalecer o alicerce técnico do nosso produto: um aplicativo móvel focado em promover autonomia e independência para idosos através da gestão de suas atividades diárias.</p>
+                    
+                    <div class="highlight-box">
+                        <p><strong>Contexto:</strong> Nas fases anteriores, validamos a dor do usuário (Fase 1), estruturamos a equipe e o planejamento financeiro (Fase 2), e definimos a arquitetura inicial e conformidade regulatória (Fase 3). Agora, evoluímos essas bases para garantir robustez, segurança, escalabilidade e integração com o ecossistema digital.</p>
+                    </div>
+                    
+                    <!-- Botão Voltar ao Início -->
+                    <div class="back-button-container" style="margin: 20px 0;">
+                        <a href="../index.html" class="back-button" style="display: inline-block; background: linear-gradient(135deg, #667eea, #764ba2); color: white; text-decoration: none; padding: 12px 24px; border-radius: 25px; font-weight: 500; transition: all 0.3s ease; font-size: 16px;">
+                            ← Voltar ao Início
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <div class="container">
-        <!-- Go-to-Market Strategy -->
-        <section class="section" id="go-to-market">
-            <h2>🚀 Estratégia Go-to-Market</h2>
-            
-            <div class="stats">
-                <div class="stat">
-                    <div class="stat-number">32M</div>
-                    <div class="stat-label">Idosos no Brasil</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">15,2%</div>
-                    <div class="stat-label">da População</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">3,2%</div>
-                    <div class="stat-label">Crescimento Anual</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">68%</div>
-                    <div class="stat-label">Possuem Smartphones</div>
-                </div>
-            </div>
-
-            <div class="cards-grid">
-                <div class="card">
-                    <h3>🎯 Segmentação de Mercado</h3>
-                    <p><strong>Primário - Idosos Independentes (65-75):</strong> 12M pessoas, renda média R$ 2.800<br>
-                    <strong>Secundário - Cuidadores Familiares:</strong> Filhos adultos, renda média R$ 4.200<br>
-                    <strong>Terciário - Profissionais de Saúde:</strong> 15.000 geriatras como prescritores</p>
-                </div>
-                <div class="card">
-                    <h3>💡 Proposta de Valor</h3>
-                    <p><strong>Para Idosos:</strong> "Mantenha sua independência com tecnologia simples"<br>
-                    <strong>Para Cuidadores:</strong> "Tranquilidade sabendo que estão bem cuidados"<br>
-                    <strong>Para Médicos:</strong> "Melhore aderência e outcomes dos pacientes"</p>
-                </div>
-                <div class="card">
-                    <h3>💰 Modelo de Pricing</h3>
-                    <p><strong>Freemium:</strong> Funcionalidades básicas gratuitas<br>
-                    <strong>Premium (R$ 19,90/mês):</strong> Recursos avançados<br>
-                    <strong>Família (R$ 39,90/mês):</strong> Múltiplos perfis + consultoria<br>
-                    <strong>B2B:</strong> White label para planos de saúde</p>
-                </div>
-                <div class="card">
-                    <h3>🤝 Canais de Distribuição</h3>
-                    <p><strong>Parcerias Estratégicas:</strong> Planos de saúde, farmácias<br>
-                    <strong>Digital:</strong> Marketing online direcionado<br>
-                    <strong>Médico:</strong> Prescrição em consultas<br>
-                    <strong>Referral:</strong> Programa de indicações</p>
-                </div>
-            </div>
-
-            <h3 style="text-align: center; margin: 2rem 0; color: #ff6b6b;">Lançamento Faseado</h3>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-title">Fase Alpha (Mês 1-2)</div>
-                        <p>100 usuários beta, validação product-market fit, NPS > 50, retenção 7 dias > 40%</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-title">Fase Beta (Mês 3-4)</div>
-                        <p>1.000 usuários ativos, teste de canais, parcerias com farmácias, otimização conversão</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-title">Fase Launch (Mês 5-6)</div>
-                        <p>5.000 usuários em 90 dias, lançamento público, PR coordenado, eventos especializados</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Marketing Digital -->
-        <section class="section" id="marketing">
-            <h2>📱 Marketing Digital e Growth Hacking</h2>
-            
-            <div class="cards-grid">
-                <div class="card">
-                    <h3>📝 Marketing de Conteúdo</h3>
-                    <p><strong>Blog Especializado:</strong> 3 artigos/semana sobre envelhecimento saudável<br>
-                    <strong>SEO Strategy:</strong> Long-tail keywords com alta intenção<br>
-                    <strong>Conteúdo Segmentado:</strong> Por persona (idosos, cuidadores, médicos)<br>
-                    <strong>Educação Visual:</strong> Tutoriais e depoimentos em vídeo</p>
-                </div>
-                <div class="card">
-                    <h3>📱 Social Media</h3>
-                    <p><strong>Facebook (78% do público):</strong> Grupos, ads segmentados, community<br>
-                    <strong>YouTube:</strong> 50 vídeos/ano, tutoriais, lives mensais<br>
-                    <strong>WhatsApp Business:</strong> Suporte e engajamento direto<br>
-                    <strong>Email Marketing:</strong> Sequências automatizadas por comportamento</p>
-                </div>
-                <div class="card">
-                    <h3>🎯 Growth Hacking</h3>
-                    <p><strong>Programa Referral:</strong> 1 mês grátis por indicação<br>
-                    <strong>Gamificação:</strong> Badges e conquistas por uso consistente<br>
-                    <strong>A/B Testing:</strong> Otimização contínua de conversão<br>
-                    <strong>Social Proof:</strong> Compartilhamento de conquistas</p>
-                </div>
-                <div class="card">
-                    <h3>💰 Performance Marketing</h3>
-                    <p><strong>Google Ads:</strong> 40% do budget, alta intenção<br>
-                    <strong>Facebook/Instagram:</strong> 35%, awareness + consideração<br>
-                    <strong>YouTube:</strong> 15%, educação e demonstração<br>
-                    <strong>Novos Canais:</strong> 10%, testes experimentais</p>
-                </div>
-            </div>
-
-            <h3 style="text-align: center; margin: 2rem 0; color: #ff6b6b;">ROI por Canal de Marketing</h3>
-            <table class="metrics-table">
-                <thead>
-                    <tr>
-                        <th>Canal</th>
-                        <th>CAC</th>
-                        <th>CLV</th>
-                        <th>ROI</th>
-                        <th>Payback</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Google Search</td>
-                        <td>R$ 85</td>
-                        <td>R$ 520</td>
-                        <td>6.1x</td>
-                        <td>3.5 meses</td>
-                    </tr>
-                    <tr>
-                        <td>Facebook Ads</td>
-                        <td>R$ 95</td>
-                        <td>R$ 480</td>
-                        <td>5.1x</td>
-                        <td>4.0 meses</td>
-                    </tr>
-                    <tr>
-                        <td>Referral</td>
-                        <td>R$ 45</td>
-                        <td>R$ 580</td>
-                        <td>12.9x</td>
-                        <td>1.9 meses</td>
-                    </tr>
-                    <tr>
-                        <td>Content Marketing</td>
-                        <td>R$ 60</td>
-                        <td>R$ 510</td>
-                        <td>8.5x</td>
-                        <td>2.5 meses</td>
-                    </tr>
-                    <tr>
-                        <td>Partnerships</td>
-                        <td>R$ 70</td>
-                        <td>R$ 490</td>
-                        <td>7.0x</td>
-                        <td>2.9 meses</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- Analytics e Métricas -->
-        <section class="section" id="analytics">
-            <h2>📊 Análise de Dados e Métricas (Analytics)</h2>
-            
-            <h3 style="text-align: center; margin: 2rem 0; color: #ff6b6b;">Framework AARRR</h3>
-            <div class="funnel">
-                <div class="funnel-step">
-                    <div class="funnel-icon">🎯</div>
-                    <div class="funnel-title">Acquisition</div>
-                    <div class="funnel-desc">MAU +15% m/m<br>CPA R$ 85<br>60% orgânico</div>
-                </div>
-                <div class="funnel-step">
-                    <div class="funnel-icon">⚡</div>
-                    <div class="funnel-title">Activation</div>
-                    <div class="funnel-desc">65% ativação<br>< 24h para ativar<br>80% completam tutorial</div>
-                </div>
-                <div class="funnel-step">
-                    <div class="funnel-icon">🔄</div>
-                    <div class="funnel-title">Retention</div>
-                    <div class="funnel-desc">D1: 70%<br>D7: 45%<br>D30: 25%</div>
-                </div>
-                <div class="funnel-step">
-                    <div class="funnel-icon">💰</div>
-                    <div class="funnel-title">Revenue</div>
-                    <div class="funnel-desc">MRR R$ 150K<br>ARPU R$ 24<br>CLV R$ 480</div>
-                </div>
-                <div class="funnel-step">
-                    <div class="funnel-icon">👥</div>
-                    <div class="funnel-title">Referral</div>
-                    <div class="funnel-desc">15% fazem indicação<br>35% conversão<br>K-Factor 0.05</div>
-                </div>
-            </div>
-
-            <div class="cards-grid">
-                <div class="card">
-                    <h3>🏗️ Arquitetura de Dados</h3>
-                    <p><strong>Coleta:</strong> Google Analytics 4, Mixpanel, Amplitude<br>
-                    <strong>Armazenamento:</strong> BigQuery como data warehouse<br>
-                    <strong>ETL:</strong> Airflow para transformação<br>
-                    <strong>Visualização:</strong> Looker Studio + Tableau</p>
-                </div>
-                <div class="card">
-                    <h3>🤖 Machine Learning</h3>
-                    <p><strong>Churn Prediction:</strong> Identificação 14 dias antes<br>
-                    <strong>LTV Prediction:</strong> Baseado em comportamento inicial<br>
-                    <strong>Personalização:</strong> Conteúdo e timing otimizados<br>
-                    <strong>Health Scoring:</strong> Alertas baseados em padrões</p>
-                </div>
-                <div class="card">
-                    <h3>🧪 A/B Testing</h3>
-                    <p><strong>Framework:</strong> Optimizely integrado<br>
-                    <strong>Metodologia:</strong> Poder 80%, significância 95%<br>
-                    <strong>Roadmap:</strong> 12 testes por trimestre<br>
-                    <strong>Foco:</strong> Onboarding, pricing, retenção, referral</p>
-                </div>
-                <div class="card">
-                    <h3>📈 Real-time Dashboards</h3>
-                    <p><strong>Executive:</strong> KPIs principais a cada 15min<br>
-                    <strong>Operations:</strong> Métricas técnicas em tempo real<br>
-                    <strong>Marketing:</strong> Performance de campanhas<br>
-                    <strong>CS:</strong> Health scores e alertas de churn</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Customer Success -->
-        <section class="section" id="customer-success">
-            <h2>🎯 Customer Success e Retenção</h2>
-            
-            <div class="cards-grid">
-                <div class="card">
-                    <h3>🏆 Success Milestones</h3>
-                    <p><strong>First Value (7 dias):</strong> Onboarding + 1 medicamento + 1 lembrete (70%)<br>
-                    <strong>Habit Formation (30 dias):</strong> 21/30 dias uso + 3 medicamentos (45%)<br>
-                    <strong>Deep Engagement (90 dias):</strong> 3+ features + compartilhamento (25%)</p>
-                </div>
-                <div class="card">
-                    <h3>📊 Health Score (0-100)</h3>
-                    <p><strong>Engagement (40%):</strong> Frequência e features usadas<br>
-                    <strong>Adoption (30%):</strong> Progresso em milestones<br>
-                    <strong>Satisfaction (20%):</strong> NPS, support, ratings<br>
-                    <strong>Growth (10%):</strong> Referrals, upgrades, expansão</p>
-                </div>
-                <div class="card">
-                    <h3>📞 Suporte Multi-Canal</h3>
-                    <p><strong>Telefone (65%):</strong> 7h-19h, < 2min espera<br>
-                    <strong>WhatsApp (25%):</strong> Chatbot + humano<br>
-                    <strong>Email (10%):</strong> SLA 4h, linguagem simples<br>
-                    <strong>Onboarding Assistido:</strong> Para usuários 70+</p>
-                </div>
-                <div class="card">
-                    <h3>🎁 Programa de Fidelização</h3>
-                    <p><strong>SeniorCare Points:</strong> Sistema de recompensas<br>
-                    <strong>Embaixadores:</strong> 50 usuários champions<br>
-                    <strong>NPS Target:</strong> > 70 (atualmente 65)<br>
-                    <strong>Referral Rate:</strong> 15% fazem indicações</p>
-                </div>
-            </div>
-
-            <div class="stats">
-                <div class="stat">
-                    <div class="stat-number">70</div>
-                    <div class="stat-label">NPS Target</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">4.5★</div>
-                    <div class="stat-label">App Store Rating</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">5%</div>
-                    <div class="stat-label">Churn Rate Target</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">92%</div>
-                    <div class="stat-label">Support CSAT</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Parcerias Estratégicas -->
-        <section class="section" id="parcerias">
-            <h2>🤝 Parcerias Estratégicas e Expansão</h2>
-            
-            <div class="cards-grid">
-                <div class="card">
-                    <h3>🏥 Planos de Saúde</h3>
-                    <p><strong>Modelo B2B2C:</strong> White-label customizado<br>
-                    <strong>Pricing:</strong> R$ 8-12 por beneficiário/mês<br>
-                    <strong>Pipeline:</strong> Amil → Bradesco → SulAmérica<br>
-                    <strong>Benefícios:</strong> Redução custos, qualidade ANS</p>
-                </div>
-                <div class="card">
-                    <h3>💊 Redes de Farmácias</h3>
-                    <p><strong>Comissão:</strong> 5% sobre vendas via app<br>
-                    <strong>Integração:</strong> Sistemas de estoque<br>
-                    <strong>Entrega:</strong> Domicílio para usuários<br>
-                    <strong>Cross-selling:</strong> Produtos de saúde</p>
-                </div>
-                <div class="card">
-                    <h3>🗺️ Expansão Geográfica</h3>
-                    <p><strong>Fase 1:</strong> Grande SP (10K usuários)<br>
-                    <strong>Fase 2:</strong> Sudeste (25K usuários)<br>
-                    <strong>Fase 3:</strong> Nacional (100K usuários)<br>
-                    <strong>Adaptação:</strong> Regional e cultural</p>
-                </div>
-                <div class="card">
-                    <h3>🚀 Novos Produtos</h3>
-                    <p><strong>Q1:</strong> Wearables + Telemedicina<br>
-                    <strong>Q2:</strong> IA + Marketplace cuidadores<br>
-                    <strong>Q3:</strong> Diabetes/Hipertensão + Comunidade<br>
-                    <strong>Q4:</strong> IoT + Famílias multi-geracionais</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Cronograma e Métricas -->
-        <section class="section" id="cronograma">
-            <h2>📅 Cronograma de Execução e Métricas</h2>
-            
-            <h3 style="text-align: center; margin: 2rem 0; color: #ff6b6b;">Projeção de Crescimento - 12 Meses</h3>
-            <div class="growth-chart">
-                <div class="chart-bars">
-                    <div class="chart-bar" style="height: 25%;">
-                        <span>1K</span>
-                    </div>
-                    <div class="chart-bar" style="height: 50%;">
-                        <span>5K</span>
-                    </div>
-                    <div class="chart-bar" style="height: 75%;">
-                        <span>15K</span>
-                    </div>
-                    <div class="chart-bar" style="height: 100%;">
-                        <span>30K</span>
-                    </div>
-                </div>
-                <div style="display: flex; gap: 1rem;">
-                    <div class="chart-label" style="flex: 1;">Mês 3<br>Foundation</div>
-                    <div class="chart-label" style="flex: 1;">Mês 6<br>Growth</div>
-                    <div class="chart-label" style="flex: 1;">Mês 9<br>Scale</div>
-                    <div class="chart-label" style="flex: 1;">Mês 12<br>Expansion</div>
-                </div>
-            </div>
-
-            <h3 style="text-align: center; margin: 2rem 0; color: #ff6b6b;">Métricas de Sucesso por Trimestre</h3>
-            <table class="metrics-table">
-                <thead>
-                    <tr>
-                        <th>Métrica</th>
-                        <th>Mês 3</th>
-                        <th>Mês 6</th>
-                        <th>Mês 9</th>
-                        <th>Mês 12</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>MAU (Usuários Ativos)</td>
-                        <td>1.000</td>
-                        <td>5.000</td>
-                        <td>15.000</td>
-                        <td>30.000</td>
-                    </tr>
-                    <tr>
-                        <td>Usuários Premium</td>
-                        <td>100</td>
-                        <td>500</td>
-                        <td>2.000</td>
-                        <td>4.500</td>
-                    </tr>
-                    <tr>
-                        <td>MRR (Receita Recorrente)</td>
-                        <td>R$ 2.500</td>
-                        <td>R$ 15.000</td>
-                        <td>R$ 50.000</td>
-                        <td>R$ 120.000</td>
-                    </tr>
-                    <tr>
-                        <td>CAC (Custo Aquisição)</td>
-                        <td>R$ 120</td>
-                        <td>R$ 100</td>
-                        <td>R$ 85</td>
-                        <td>R$ 75</td>
-                    </tr>
-                    <tr>
-                        <td>LTV (Valor Vitalício)</td>
-                        <td>R$ 400</td>
-                        <td>R$ 450</td>
-                        <td>R$ 480</td>
-                        <td>R$ 520</td>
-                    </tr>
-                    <tr>
-                        <td>Churn Rate</td>
-                        <td>8%</td>
-                        <td>6%</td>
-                        <td>5%</td>
-                        <td>4%</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-title">Q1 - Foundation (Meses 1-3)</div>
-                        <p>Lançamento oficial, 1K MAU, NPS > 50, primeira parceria farmácia</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-title">Q2 - Growth (Meses 4-6)</div>
-                        <p>5K MAU, 500 premium, MRR R$ 15K, primeira parceria B2B2C</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-title">Q3 - Scale (Meses 7-9)</div>
-                        <p>15K MAU, 2K premium, MRR R$ 50K, expansão Rio de Janeiro</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-title">Q4 - Expansion (Meses 10-12)</div>
-                        <p>30K MAU, 4.5K premium, MRR R$ 120K, 3 parcerias B2B2C</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Conclusão -->
-        <section class="section">
-            <h2>🎯 Conclusão e Próximos Passos</h2>
-            
-            <div class="card">
-                <h3>✅ Fatores Críticos de Sucesso</h3>
-                <p>A Fase 4 representa a materialização comercial de todo o trabalho técnico e estratégico desenvolvido nas fases anteriores. Através da implementação de uma estratégia go-to-market abrangente, marketing digital direcionado, analytics avançado e foco em customer success, estabelecemos as bases para transformar o SeniorCare em uma plataforma líder no mercado de tecnologia assistiva para idosos.</p>
-                
-                <div style="margin-top: 2rem;">
-                    <strong>🚀 Transição para Fase 5:</strong><br>
-                    Com o motor de crescimento estabelecido na Fase 4, a <strong>Fase 5: Scale & Innovation</strong> focará na escalabilidade técnica e organizacional, inovação contínua, sustentabilidade e visão de longo prazo. A transição natural será do crescimento inicial para a consolidação como plataforma dominante no mercado.
-                </div>
-
-                <div style="margin-top: 2rem;">
-                    <strong>📊 Impacto Esperado:</strong><br>
-                    <strong>Usuários:</strong> 30.000 usuários ativos impactados positivamente<br>
-                    <strong>Receita:</strong> R$ 120.000 MRR estabelecendo viabilidade comercial<br>
-                    <strong>Mercado:</strong> Posicionamento como líder em tecnologia para idosos<br>
-                    <strong>Social:</strong> Melhoria na qualidade de vida de milhares de famílias
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <footer>
+    <!-- Seção 1: Evolução da Arquitetura de Software -->
+    <section id="arquitetura" class="section-bg">
         <div class="container">
-            <p><strong>Tech Challenge - Fase 4: Launch & Growth</strong></p>
-            <p>Desenvolvido pelo Grupo 28 (84) • Julho 2025</p>
-            <p>Lançamento, marketing digital, métricas e crescimento sustentável</p>
+            <div class="section-title">
+                <h2><i class="fas fa-project-diagram"></i> 1. Evolução da Arquitetura de Software</h2>
+                <p>Proposta de evolução arquitetural para equilibrar simplicidade operacional com flexibilidade estratégica de longo prazo.</p>
+            </div>
+
+            <div class="design-thinking-item animate-on-scroll">
+                <h3>1.1 Avaliação da Arquitetura Atual</h3>
+                <p>A arquitetura definida na Fase 3 estabeleceu uma base sólida utilizando microsserviços, com um frontend multiplataforma em <strong>Flutter</strong>, backend hospedado na <strong>AWS</strong>, e uma combinação de bancos de dados NoSQL (<strong>MongoDB</strong>) e SQL (<strong>PostgreSQL</strong>). Esta abordagem, embora robusta, apresenta desafios em termos de complexidade operacional, especialmente para uma equipe em crescimento e um produto em estágio inicial de mercado.</p>
+                
+                <div class="highlight-box">
+                    <p><strong>Desafio Principal:</strong> O custo de coordenação entre múltiplos microsserviços para funcionalidades que atravessam diferentes domínios. Para o MVP e as fases iniciais de crescimento, essa granularidade pode introduzir uma sobrecarga de desenvolvimento e manutenção que não se traduz diretamente em valor para o usuário.</p>
+                </div>
+            </div>
+
+            <div class="design-thinking-item animate-on-scroll">
+                <h3>1.2 Proposta de Evolução: Arquitetura Híbrida com Modular Monolith</h3>
+                <p>Propomos uma evolução para um modelo de <strong>Arquitetura Híbrida</strong>, adotando um <strong>Monólito Modular (Modular Monolith)</strong> como o núcleo do sistema, enquanto mantemos a possibilidade de extrair serviços para microsserviços independentes conforme a necessidade de escala e complexidade de domínios específicos.</p>
+                
+                <div class="architecture-diagram">
+                    <h4><i class="fas fa-cube"></i> Modelo Proposto: Monólito Modular</h4>
+                    <p>Neste modelo, os domínios de negócio definidos na Fase 3 (Gestão de Usuários, Lembretes, Agendamentos, etc.) seriam implementados como <strong>módulos internos</strong> e bem definidos dentro de uma única aplicação (o monólito). A comunicação entre esses módulos ocorreria primariamente através de <strong>chamadas de função em memória</strong>, o que reduz drasticamente a latência e a complexidade em comparação com a comunicação via rede dos microsserviços.</p>
+                </div>
+
+                <h4>Vantagens da Abordagem Híbrida:</h4>
+                <div class="evolution-grid">
+                    <div class="evolution-card">
+                        <h4><i class="fas fa-rocket"></i> Simplicidade de Desenvolvimento</h4>
+                        <p>Uma única base de código e um único artefato para deploy simplificam o processo de CI/CD e reduzem a carga cognitiva da equipe.</p>
+                    </div>
+                    
+                    <div class="evolution-card">
+                        <h4><i class="fas fa-tachometer-alt"></i> Performance Melhorada</h4>
+                        <p>A comunicação em memória entre os módulos é muito mais rápida do que a comunicação HTTP/RPC entre microsserviços.</p>
+                    </div>
+                    
+                    <div class="evolution-card">
+                        <h4><i class="fas fa-database"></i> Consistência de Dados</h4>
+                        <p>Transações que abrangem múltiplos módulos podem ser gerenciadas com a consistência de um banco de dados relacional único.</p>
+                    </div>
+                    
+                    <div class="evolution-card">
+                        <h4><i class="fas fa-expand-arrows-alt"></i> Extração Evolutiva</h4>
+                        <p>A arquitetura é projetada para a extração evolutiva, permitindo que quando um módulo específico (ex: Notificações) se tornar um gargalo de performance ou exigir uma equipe dedicada, ele possa ser extraído para um microsserviço independente sem reescrever o resto do sistema.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="design-thinking-item animate-on-scroll">
+                <h3>1.3 Aplicação de Padrões Arquiteturais: Clean Architecture</h3>
+                <p>Dentro de cada módulo do monólito, aplicaremos os princípios da <strong>Clean Architecture</strong>. Esta escolha garante uma separação clara de responsabilidades e um baixo acoplamento entre a lógica de negócio e os detalhes de infraestrutura (frameworks, bancos de dados, UI).</p>
+                
+                <div class="architecture-diagram">
+                    <h4><i class="fas fa-layer-group"></i> Organização em Camadas</h4>
+                    <p>A arquitetura será organizada em camadas concêntricas:</p>
+                    <ul>
+                        <li><strong>Entities:</strong> Contêm as regras de negócio mais críticas e independentes</li>
+                        <li><strong>Use Cases (Interactors):</strong> Orquestram o fluxo de dados entre as Entities e as camadas externas, representando a lógica de aplicação</li>
+                        <li><strong>Interface Adapters:</strong> Convertem os dados do formato mais conveniente para os Use Cases para o formato mais conveniente para as camadas externas (e.g., web controllers, gateways de banco de dados)</li>
+                        <li><strong>Frameworks & Drivers:</strong> Camada mais externa, contém a UI, banco de dados, frameworks web, etc.</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <p><strong>Regra de Dependência:</strong> As dependências só podem apontar para dentro. Isso garante que a lógica de negócio não dependa de detalhes de implementação, tornando o sistema mais testável, manutenível e adaptável a mudanças tecnológicas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="design-thinking-item animate-on-scroll">
+                <h3>1.4 Integração com o Roadmap do Produto</h3>
+                <p>A evolução da arquitetura está diretamente alinhada com o roadmap do produto em três horizontes temporais:</p>
+                
+                <div class="timeline-container">
+                    <div class="timeline-item">
+                        <h4><i class="fas fa-clock"></i> Curto Prazo (MVP e primeiros usuários)</h4>
+                        <p>O Monólito Modular permite uma entrega rápida de valor, com um ciclo de desenvolvimento ágil e focado nas funcionalidades principais.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h4><i class="fas fa-clock"></i> Médio Prazo (crescimento e escala)</h4>
+                        <p>Conforme a base de usuários cresce, o monitoramento (utilizando Prometheus/Grafana) identificará os módulos que mais consomem recursos. O primeiro candidato à extração para um microsserviço seria o de <strong>Notificações</strong>, devido ao seu volume e natureza assíncrona.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h4><i class="fas fa-clock"></i> Longo Prazo (ecossistema de parceiros)</h4>
+                        <p>A arquitetura modular, com suas fronteiras bem definidas, facilita a exposição de funcionalidades via APIs públicas para parceiros, transformando o produto em uma plataforma. Módulos como <strong>Agendamentos</strong> e <strong>Gestão de Saúde</strong> poderão ter suas APIs expostas para integração com clínicas e farmácias.</p>
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    <p><strong>Conclusão:</strong> Esta abordagem arquitetural oferece o equilíbrio ideal entre velocidade de desenvolvimento no curto prazo e a flexibilidade estratégica necessária para a sustentabilidade e o crescimento do produto no longo prazo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 2: Governança de Tecnologia e Gestão de Riscos -->
+    <section id="governanca">
+        <div class="container">
+            <div class="section-title">
+                <h2><i class="fas fa-shield-alt"></i> 2. Estruturação da Governança de Tecnologia e Gestão de Riscos</h2>
+                <p>Framework de governança baseado em COBIT 2019 para alinhar tecnologia com objetivos de negócio.</p>
+            </div>
+
+            <div class="design-thinking-item animate-on-scroll">
+                <h3>2.1 Modelo de Governança Técnica com base no COBIT 2019</h3>
+                <p>Adotaremos o framework <strong>COBIT 2019</strong> como base para a nossa governança de tecnologia, por sua abordagem abrangente que alinha os objetivos de TI com os objetivos de negócio. O COBIT nos ajudará a garantir que a tecnologia não apenas suporte, mas também impulsione a estratégia do nosso aplicativo, criando valor de forma segura e confiável.</p>
+                
+                <div class="architecture-diagram">
+                    <h4><i class="fas fa-sitemap"></i> Domínios Principais do COBIT</h4>
+                    <p>Nosso modelo de governança se concentrará em três domínios principais do COBIT:</p>
+                    <ul>
+                        <li><strong>APO (Alinhar, Planejar e Organizar):</strong> Terá foco em garantir que a estratégia de TI esteja alinhada com a estratégia de negócio</li>
+                        <li><strong>BAI (Construir, Adquirir e Implementar):</strong> Cuidará do gerenciamento de programas e projetos, garantindo que as soluções sejam entregues conforme o esperado</li>
+                        <li><strong>DSS (Entregar, Servir e Suportar):</strong> Terá foco na entrega de serviços de TI, incluindo gerenciamento de operações e segurança</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="design-thinking-item animate-on-scroll">
+                <h3>2.2 Papéis, Responsabilidades e Fluxos Decisórios (Matriz RACI)</h3>
+                <p>Para garantir clareza e agilidade nos processos de decisão, implementaremos uma <strong>Matriz de Responsabilidades (RACI)</strong>.</p>
+                
+                <div style="overflow-x: auto;">
+                    <table class="governance-table">
+                        <thead>
+                            <tr>
+                                <th>Atividade / Decisão</th>
+                                <th>Product Owner</th>
+                                <th>Tech Lead</th>
+                                <th>Arquiteto de Software</th>
+                                <th>Squad de Desenvolvimento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Definição do Roadmap do Produto</strong></td>
+                                <td><span class="tech-badge" style="background: #22543d;">A</span></td>
+                                <td><span class="tech-badge" style="background: #744210;">R</span></td>
+                                <td><span class="tech-badge" style="background: #2c5282;">C</span></td>
+                                <td><span class="tech-badge" style="background: #718096;">I</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Priorização de Features</strong></td>
+                                <td><span class="tech-badge" style="background: #22543d;">A</span></td>
+                                <td><span class="tech-badge" style="background: #744210;">R</span></td>
+                                <td><span class="tech-badge" style="background: #718096;">I</span></td>
+                                <td><span class="tech-badge" style="background: #718096;">I</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Decisões de Arquitetura de Software</strong></td>
+                                <td><span class="tech-badge" style="background: #718096;">I</span></td>
+                                <td><span class="tech-badge" style="background: #22543d;">A</span></td>
+                                <td><span class="tech-badge" style="background: #744210;">R</span></td>
+                                <td><span class="tech-badge" style="background: #2c5282;">C</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Seleção de Novas Tecnologias</strong></td>
+                                <td><span class="tech-badge" style="background: #718096;">I</span></td>
+                                <td><span class="tech-badge" style="background: #744210;">R</span></td>
+                                <td><span class="tech-badge" style="background: #22543d;">A</span></td>
+                                <td><span class="tech-badge" style="background: #2c5282;">C</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Gestão do Orçamento de TI</strong></td>
+                                <td><span class="tech-badge" style="background: #22543d;">A</span></td>
+                                <td><span class="tech-badge" style="background: #744210;">R</span></td>
+                                <td><span class="tech-badge" style="background: #718096;">I</span></td>
+                                <td><span class="tech-badge" style="background: #718096;">I</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Gestão de Riscos Técnicos</strong></td>
+                                <td><span class="tech-badge" style="background: #2c5282;">C</span></td>
+                                <td><span class="tech-badge" style="background: #22543d;">A</span></td>
+                                <td><span class="tech-badge" style="background: #744210;">R</span></td>
+                                <td><span class="tech-badge" style="background: #718096;">I</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Plano de Resposta a Incidentes</strong></td>
+                                <td><span class="tech-badge" style="background: #718096;">I</span></td>
+                                <td><span class="tech-badge" style="background: #22543d;">A</span></td>
+                                <td><span class="tech-badge" style="background: #744210;">R</span></td>
+                                <td><span class="tech-badge" style="background: #744210;">R</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Conformidade com LGPD/GDPR</strong></td>
+                                <td><span class="tech-badge" style="background: #22543d;">A</span></td>
+                                <td><span class="tech-badge" style="background: #744210;">R</span></td>
+                                <td><span class="tech-badge" style="background: #2c5282;">C</span></td>
+                                <td><span class="tech-badge" style="background: #718096;">I</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="highlight-box" style="margin-top: 1.5rem;">
+                    <p><strong>Legenda:</strong></p>
+                    <ul>
+                        <li><strong>R (Responsible):</strong> Quem executa a tarefa</li>
+                        <li><strong>A (Accountable):</strong> Quem é o dono da tarefa e responde por ela</li>
+                        <li><strong>C (Consulted):</strong> Quem deve ser consultado antes da decisão</li>
+                        <li><strong>I (Informed):</strong> Quem deve ser informado após a decisão</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="design-thinking-item animate-on-scroll">
+                <h3>2.3 Estratégia de Gestão de Riscos</h3>
+                <p>Nossa estratégia de gestão de riscos será proativa e contínua, integrada ao ciclo de vida do desenvolvimento de software.</p>
+                
+                <div style="overflow-x: auto;">
+                    <table class="risk-table">
+                        <thead>
+                            <tr>
+                                <th>Categoria de Risco</th>
+                                <th>Risco Específico</th>
+                                <th>Probabilidade</th>
+                                <th>Impacto</th>
+                                <th>Estratégia de Mitigação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Tecnologia</strong></td>
+                                <td>Vulnerabilidade de Segurança em Dependência de Terceiros</td>
+                                <td>Média</td>
+                                <td>Alto</td>
+                                <td>Análise de Composição de Software (SCA) contínua com ferramentas como Snyk ou Dependabot. Atualizações de segurança automatizadas no pipeline de CI/CD. Política de uso de bibliotecas de código aberto.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Pessoas</strong></td>
+                                <td>Perda de Conhecimento Chave (saída de um membro sênior)</td>
+                                <td>Baixa</td>
+                                <td>Alto</td>
+                                <td>Documentação contínua da arquitetura e decisões (ADRs). Pair programming e code reviews para disseminar conhecimento. Plano de sucessão para posições críticas.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Processos</strong></td>
+                                <td>Aumento do Débito Técnico devido a Prazos Agressivos</td>
+                                <td>Alta</td>
+                                <td>Médio</td>
+                                <td>Gestão de Débito Técnico explícita no backlog. "Sprints de Qualidade" periódicos para refatoração. Métricas de qualidade de código (complexidade ciclomática, code coverage).</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Regulatório</strong></td>
+                                <td>Não conformidade com novas regulações de privacidade de dados</td>
+                                <td>Média</td>
+                                <td>Alto</td>
+                                <td>Monitoramento regulatório contínuo. Privacy by Design como princípio fundamental. Consultoria jurídica especializada para revisões periódicas.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Mercado</strong></td>
+                                <td>Adoção da tecnologia por concorrente de maior porte</td>
+                                <td>Média</td>
+                                <td>Médio</td>
+                                <td>Foco na experiência do usuário e nicho (idosos). Ciclo de feedback rápido para inovação contínua. Construção de uma comunidade de usuários engajada.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="highlight-box">
+                    <p><strong>Revisão Contínua:</strong> Este plano de governança e gestão de riscos será um documento vivo, revisado e adaptado trimestralmente pelo Steering Committee para garantir sua relevância e eficácia contínuas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 3: Estratégia de Dados e IA -->
+    <section id="dados-ia" class="section-bg">
+        <div class="container">
+            <div class="section-title">
+                <h2><i class="fas fa-brain"></i> 3. Estratégia de Dados e Inteligência Artificial (D&A + IA)</h2>
+                <p>Arquitetura de dados escalável e estratégia de IA ética para personalização e insights de negócio.</p>
+            </div>
+
+            <div class="design-thinking-item animate-on-scroll">
+                <h3>3.1 Arquitetura de Dados e IA Escalável</h3>
+                <p>Nossa arquitetura de dados foi projetada para ser escalável, segura e flexível, suportando desde análises de negócio até a implementação de modelos de Inteligência Artificial. Adotaremos uma abordagem de <strong>Modern Data Stack</strong>, utilizando as melhores ferramentas para cada etapa do ciclo de vida dos dados.</p>
+                
+                <div class="data-stack-diagram">
+                    <h4><i class="fas fa-database"></i> Modern Data Stack - Fluxo de Dados</h4>
+                    <div style="text-align: left; margin-top: 1.5rem;">
+                        <p><strong>Coleta e Ingestão:</strong></p>
+                        <ul>
+                            <li><strong>Eventos do Aplicativo:</strong> Utilizaremos o <strong>AWS SDK</strong> no frontend (Flutter) para enviar eventos de interação do usuário (cliques, visualizações de tela, conclusão de lembretes) para o <strong>Amazon Kinesis Data Streams</strong></li>
+                            <li><strong>Dados Transacionais:</strong> Capturaremos alterações nos nossos bancos de dados operacionais (PostgreSQL e MongoDB) utilizando o <strong>AWS Database Migration Service (DMS)</strong> para replicar os dados em tempo real para o Data Lake</li>
+                        </ul>
+                        
+                        <p><strong>Armazenamento:</strong></p>
+                        <ul>
+                            <li><strong>Data Lake:</strong> O <strong>Amazon S3</strong> servirá como nosso Data Lake, armazenando dados brutos e não estruturados de forma econômica e durável</li>
+                            <li><strong>Data Warehouse:</strong> Para a camada analítica, utilizaremos o <strong>Amazon Redshift</strong> como nosso Data Warehouse para armazenar dados estruturados e processados, otimizados para consultas analíticas complexas e de baixa latência</li>
+                        </ul>
+                        
+                        <p><strong>Processamento e Transformação:</strong></p>
+                        <ul>
+                            <li>Orquestraremos nossos pipelines de dados com o <strong>AWS Glue</strong> para trabalhos de ETL</li>
+                            <li>Utilizaremos o <strong>dbt (Data Build Tool)</strong> para transformações (ELT) dentro do Redshift, permitindo construir modelos de dados de forma versionada, testável e modular</li>
+                        </ul>
+                        
+                        <p><strong>Análise e Inteligência Artificial:</strong></p>
+                        <ul>
+                            <li><strong>Business Intelligence:</strong> Conectaremos o <strong>Metabase</strong> (uma ferramenta de BI open-source) ao nosso Redshift para criar dashboards e relatórios interativos para a equipe de negócio</li>
+                            <li><strong>Machine Learning:</strong> O <strong>Amazon SageMaker</strong> será nossa plataforma de ponta a ponta para construir, treinar e implantar modelos de Machine Learning. Os dados processados no Redshift servirão como fonte para o treinamento dos modelos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="design-thinking-item animate-on-scroll">
+                <h3>3.2 Objetivos de Negócio, Métricas e Governança</h3>
+                <p>Nossa estratégia de dados está intrinsecamente ligada aos objetivos de negócio do produto. A governança de dados garantirá a qualidade, segurança e o uso ético dessas informações.</p>
+                
+                <div style="overflow-x: auto;">
+                    <table class="governance-table">
+                        <thead>
+                            <tr>
+                                <th>Objetivo de Negócio</th>
+                                <th>Métrica de Sucesso (KPI)</th>
+                                <th>Fonte de Dados</th>
+                                <th>Dimensões de Análise</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Melhorar a adesão ao tratamento médico</strong></td>
+                                <td>Taxa de conclusão de lembretes de medicação (&gt; 90%)</td>
+                                <td>Eventos do App (Kinesis)</td>
+                                <td>Por tipo de medicamento, perfil do usuário, horário</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Reduzir o isolamento social</strong></td>
+                                <td>Nº de interações sociais por usuário/semana</td>
+                                <td>Dados do App (PostgreSQL)</td>
+                                <td>Por faixa etária, localização, tipo de evento</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Aumentar o engajamento do produto</strong></td>
+                                <td>Relação DAU/MAU (Usuários Ativos Diários/Mensais) &gt; 40%</td>
+                                <td>Eventos do App (Kinesis)</td>
+                                <td>Por funcionalidade, versão do app, sistema operacional</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Personalizar a experiência do usuário</strong></td>
+                                <td>Taxa de cliques (CTR) em conteúdo recomendado &gt; 15%</td>
+                                <td>Logs de Interação (S3)</td>
+                                <td>Por tipo de conteúdo, perfil de usuário</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="design-thinking-item animate-on-scroll">
+                <h3>3.3 Diretrizes de Uso Ético de IA e Segurança de Dados</h3>
+                <p>A confiança dos nossos usuários é o nosso ativo mais importante. Portanto, estabelecemos diretrizes rigorosas para o uso ético de IA e a segurança dos dados, em total conformidade com a <strong>LGPD</strong> e os princípios de <strong>Privacy by Design</strong>.</p>
+                
+                <div class="evolution-grid">
+                    <div class="evolution-card">
+                        <h4><i class="fas fa-eye"></i> Transparência e Explicabilidade</h4>
+                        <p>Os usuários serão informados de forma clara e acessível sobre como seus dados são utilizados para personalizar a experiência no aplicativo. Para modelos de IA que impactam o usuário (ex: recomendação de atividades), forneceremos explicações simples sobre o porquê de uma determinada sugestão ter sido feita.</p>
+                    </div>
+                    
+                    <div class="evolution-card">
+                        <h4><i class="fas fa-balance-scale"></i> Justiça e Equidade (Fairness)</h4>
+                        <p>Nossos modelos de IA serão continuamente auditados para detectar e mitigar vieses que possam prejudicar ou discriminar grupos de usuários. Ferramentas como o <strong>SageMaker Clarify</strong> serão utilizadas para medir e monitorar o viés dos modelos.</p>
+                    </div>
+                    
+                    <div class="evolution-card">
+                        <h4><i class="fas fa-lock"></i> Segurança e Privacidade</h4>
+                        <p>Todos os dados utilizados para fins analíticos e de treinamento de modelos serão previamente anonimizados ou pseudonimizados para proteger a identidade dos usuários. Coletaremos apenas os dados estritamente necessários para a funcionalidade do aplicativo e para os objetivos de negócio declarados (minimização de dados). Implementaremos um controle de acesso rigoroso (RBAC) no nosso Data Warehouse e Data Lake, garantindo que os dados só possam ser acessados por pessoal autorizado e para finalidades legítimas. Todos os dados serão criptografados em trânsito (TLS) e em repouso (AWS KMS).</p>
+                    </div>
+                    
+                    <div class="evolution-card">
+                        <h4><i class="fas fa-users"></i> Responsabilidade e Supervisão Humana</h4>
+                        <p>Criaremos um <strong>Comitê de Ética em Dados e IA</strong>, composto por membros das áreas de produto, tecnologia e jurídica, para revisar e aprovar todos os novos casos de uso de dados e modelos de IA antes de sua implementação. Os sistemas de IA terão mecanismos de supervisão humana, garantindo que decisões críticas não sejam totalmente automatizadas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 4: DevSecOps -->
+    <section id="devsecops">
+        <div class="container">
+            <div class="section-title">
+                <h2><i class="fas fa-code-branch"></i> 4. Implantação de DevOps e Segurança Integrada (DevSecOps)</h2>
+                <p>Pipeline de CI/CD robusto com segurança integrada em cada fase do desenvolvimento.</p>
+            </div>
+
+            <div class="design-thinking-item animate-on-scroll">
+                <h3>4.1 Pipeline de DevOps (CI/CD)</h3>
+                <p>Nosso pipeline de CI/CD será o coração da nossa estratégia de entrega de software, garantindo que possamos construir, testar e liberar novas versões do nosso aplicativo de forma rápida, segura e confiável. Utilizaremos o <strong>GitHub Actions</strong> como nossa ferramenta de automação, por sua integração nativa com nosso repositório de código e sua vasta gama de ações customizáveis.</p>
+                
+                <div class="pipeline-diagram">
+                    <h4><i class="fas fa-project-diagram"></i> Fluxo do Pipeline CI/CD</h4>
+                    <p>O pipeline será acionado a cada <code>push</code> para a branch <code>main</code> ou na criação de um <code>pull request</code> para <code>main</code>.</p>
+                    
+                    <div style="margin-top: 1.5rem;">
+                        <div class="timeline-item">
+                            <h4>Fase 1: Build & Unit Test</h4>
+                            <p>O código-fonte é compilado e os testes unitários são executados. Se qualquer teste falhar, o pipeline é interrompido. Também realizamos análise estática com <strong>SonarCloud</strong> para verificar code smells, complexidade e duplicação.</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <h4>Fase 2: Security Scan (SAST & SCA)</h4>
+                            <p>O <strong>CodeQL</strong> (integrado ao GitHub) analisa o código em busca de vulnerabilidades de segurança conhecidas (e.g., SQL Injection, XSS), enquanto o <strong>Dependabot</strong> e o <strong>Snyk</strong> escaneiam as dependências do projeto em busca de vulnerabilidades conhecidas.</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <h4>Fase 3: Build da Imagem Docker</h4>
+                            <p>Se os passos anteriores forem bem-sucedidos, uma imagem Docker da aplicação é construída e enviada para o nosso registro de contêineres, o <strong>Amazon ECR (Elastic Container Registry)</strong>, com uma tag única da versão.</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <h4>Fase 4: Deploy em Ambiente de Homologação (Staging)</h4>
+                            <p>A nova imagem Docker é automaticamente implantada em um ambiente de homologação, que é uma réplica do ambiente de produção. Utilizaremos <strong>AWS Fargate</strong> para orquestrar nossos contêineres, abstraindo a complexidade de gerenciamento de servidores.</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <h4>Fase 5: Testes de Integração e E2E (DAST)</h4>
+                            <p>Testes de integração automatizados são executados contra o ambiente de homologação. Ferramentas como o <strong>OWASP ZAP</strong> são executadas para testar a aplicação em tempo de execução, simulando ataques externos.</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <h4>Fase 6: Aprovação Manual para Produção</h4>
+                            <p>Após a conclusão bem-sucedida de todos os testes, o pipeline pausa e exige uma aprovação manual do Tech Lead ou Product Owner para prosseguir com o deploy em produção.</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <h4>Fase 7: Deploy em Produção (Blue/Green)</h4>
+                            <p>Implementaremos uma estratégia de deploy <strong>Blue/Green</strong>. A nova versão (Green) é implantada ao lado da versão atual (Blue). O tráfego é gradualmente redirecionado para a versão Green. Se nenhum erro for detectado, a versão Blue é desativada. Isso permite um rollback quase instantâneo em caso de problemas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="design-thinking-item animate-on-scroll">
+                <h3>4.2 Plano de DevSecOps: Shift-Left Security</h3>
+                <p>Nossa filosofia é que a segurança é responsabilidade de todos e deve ser integrada em cada fase do ciclo de vida de desenvolvimento de software (<strong>Shift-Left Security</strong>).</p>
+                
+                <div class="evolution-grid">
+                    <div class="evolution-card">
+                        <h4><i class="fas fa-pencil-ruler"></i> Design</h4>
+                        <p>Realizamos <strong>Threat Modeling (Modelagem de Ameaças)</strong> para identificar potenciais riscos de segurança na arquitetura da nova funcionalidade.</p>
+                    </div>
+                    
+                    <div class="evolution-card">
+                        <h4><i class="fas fa-code"></i> Desenvolvimento</h4>
+                        <p>Fornecemos treinamento contínuo para os desenvolvedores sobre práticas de codificação segura (e.g., OWASP Top 10). O uso de SAST no pipeline fornece feedback rápido sobre vulnerabilidades introduzidas.</p>
+                    </div>
+                    
+                    <div class="evolution-card">
+                        <h4><i class="fas fa-vial"></i> Testes</h4>
+                        <p>Além dos testes de segurança automatizados (SAST, DAST, SCA), realizamos <strong>testes de penetração (pentests)</strong> anuais com uma empresa externa especializada para validar a segurança da nossa aplicação.</p>
+                    </div>
+                    
+                    <div class="evolution-card">
+                        <h4><i class="fas fa-server"></i> Operação</h4>
+                        <p>Utilizamos o <strong>AWS GuardDuty</strong> para monitoramento contínuo de ameaças e atividades maliciosas em nossa infraestrutura AWS. Logs de aplicação e infraestrutura são centralizados no <strong>Amazon CloudWatch</strong> e analisados em busca de anomalias.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="design-thinking-item animate-on-scroll">
+                <h3>4.3 Práticas de Segurança Aplicadas: Red, Blue e Purple Teams</h3>
+                <p>Para testar e fortalecer continuamente nossa postura de segurança, adotaremos uma abordagem colaborativa entre equipes de ataque e defesa.</p>
+                
+                <div class="architecture-diagram">
+                    <h4><i class="fas fa-users-cog"></i> Estrutura de Times de Segurança</h4>
+                    
+                    <div style="margin-top: 1.5rem;">
+                        <p><strong><i class="fas fa-user-ninja"></i> Red Team (Ataque):</strong> Tem a função de simular ataques de adversários reais para identificar vulnerabilidades e pontos fracos em nossas defesas. Periodicamente (a cada trimestre), um subgrupo da equipe (ou um consultor externo) atuará como Red Team, tentando explorar a aplicação e a infraestrutura sem conhecimento prévio da equipe de defesa. O objetivo é testar a eficácia dos nossos controles de segurança e da nossa capacidade de detecção e resposta.</p>
+                        
+                        <p><strong><i class="fas fa-shield-alt"></i> Blue Team (Defesa):</strong> Tem a função de manter e operar as defesas de segurança da organização, detectar e responder a incidentes. O Blue Team é a equipe de operações do dia-a-dia, responsável por configurar firewalls, monitorar logs, aplicar patches de segurança e responder a alertas gerados pelas nossas ferramentas de segurança.</p>
+                        
+                        <p><strong><i class="fas fa-handshake"></i> Purple Team (Colaboração):</strong> Facilita a colaboração e o compartilhamento de conhecimento entre o Red Team e o Blue Team. Após cada exercício do Red Team, realizamos uma sessão de Purple Team onde atacantes e defensores se reúnem. O Red Team compartilha suas táticas, técnicas e procedimentos (TTPs), e o Blue Team discute como as defesas se comportaram e como podem ser aprimoradas. O objetivo não é "ganhar" ou "perder", mas sim melhorar a segurança geral da organização de forma colaborativa e transparente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 5: Integração em Ecossistemas Digitais -->
+    <section id="ecossistema" class="section-bg">
+        <div class="container">
+            <div class="section-title">
+                <h2><i class="fas fa-network-wired"></i> 5. Integração do Produto em Ecossistemas Digitais</h2>
+                <p>Estratégia de integração para transformar o produto em uma plataforma de bem-estar para idosos.</p>
+            </div>
+
+            <div class="design-thinking-item animate-on-scroll">
+                <h3>5.1 Plano Técnico de Integração e Arquitetura do Ecossistema</h3>
+                <p>Para que nosso aplicativo transcenda sua função como uma ferramenta isolada e se torne uma plataforma de bem-estar para idosos, a integração com ecossistemas digitais é fundamental. Nossa arquitetura de integração será baseada em <strong>APIs (Application Programming Interfaces)</strong>, projetada para ser segura, escalável e fácil de consumir por parceiros estratégicos.</p>
+                
+                <div class="architecture-diagram">
+                    <h4><i class="fas fa-plug"></i> Amazon API Gateway como Ponto Central</h4>
+                    <p>Adotaremos o <strong>Amazon API Gateway</strong> como o ponto central de entrada para todas as integrações externas. Ele nos fornecerá uma camada de gerenciamento robusta para:</p>
+                    <ul>
+                        <li><strong>Autenticação e Autorização:</strong> Todas as chamadas de API exigirão chaves de API e serão autorizadas usando políticas do AWS IAM</li>
+                        <li><strong>Rate Limiting e Throttling:</strong> Protegendo nossos serviços de backend contra abuso e picos de tráfego</li>
+                        <li><strong>Monitoramento e Logging:</strong> Visibilidade total sobre o uso das nossas APIs através do Amazon CloudWatch</li>
+                        <li><strong>Versionamento:</strong> Permitindo evoluir nossas APIs sem quebrar as integrações existentes</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="design-thinking-item animate-on-scroll">
+                <h3>5.2 Parceiros Estratégicos e Casos de Uso</h3>
+                <p>Identificamos três categorias principais de parceiros estratégicos:</p>
+                
+                <div class="integration-grid">
+                    <div class="integration-card">
+                        <h4><i class="fas fa-pills"></i> Farmácias e Drogarias</h4>
+                        <p><strong>Caso de Uso:</strong> Compra recorrente de medicamentos diretamente pelo aplicativo.</p>
+                        <p><strong>Integração:</strong> Quando um lembrete de medicação indicar que o estoque está baixo, o usuário poderá, com um clique, autorizar a compra e a entrega pela sua farmácia de preferência.</p>
+                        <p><strong>Benefício:</strong> Conveniência para o usuário e aumento de vendas para a farmácia.</p>
+                    </div>
+                    
+                    <div class="integration-card">
+                        <h4><i class="fas fa-hospital"></i> Clínicas e Hospitais</h4>
+                        <p><strong>Caso de Uso:</strong> Sincronização de consultas e exames.</p>
+                        <p><strong>Integração:</strong> Integração com sistemas de agendamento (HIS/EMR) para sincronizar consultas e exames. O usuário poderá visualizar seus agendamentos feitos na clínica diretamente no nosso aplicativo, e vice-versa.</p>
+                        <p><strong>Benefício:</strong> Redução de faltas e melhor gestão da agenda para a clínica.</p>
+                    </div>
+                    
+                    <div class="integration-card">
+                        <h4><i class="fas fa-hands-helping"></i> Prestadores de Serviços de Cuidado</h4>
+                        <p><strong>Caso de Uso:</strong> Conexão de cuidadores a idosos.</p>
+                        <p><strong>Integração:</strong> Prestadores de serviços que conectam cuidadores a idosos poderão se integrar para sincronizar agendas e facilitar a comunicação, garantindo que o cuidador esteja ciente dos compromissos e medicações do idoso.</p>
+                        <p><strong>Benefício:</strong> Melhor coordenação do cuidado e tranquilidade para familiares.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="design-thinking-item animate-on-scroll">
+                <h3>5.3 Análise de Tecnologias Emergentes</h3>
+                <p>Avaliamos continuamente tecnologias emergentes para identificar oportunidades de inovação que possam agregar valor ao nosso produto e aos nossos usuários, utilizando o framework <strong>Hype Cycle</strong> do Gartner para avaliar a maturidade e o potencial de cada tecnologia.</p>
+                
+                <div style="overflow-x: auto;">
+                    <table class="hype-cycle-table">
+                        <thead>
+                            <tr>
+                                <th>Tecnologia</th>
+                                <th>Análise de Viabilidade e Aplicabilidade</th>
+                                <th>Framework Hype Cycle (Posição)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>APIs Abertas (Open APIs)</strong></td>
+                                <td><strong>Alta Viabilidade.</strong> Essencial para nossa estratégia de plataforma. Permitirá que parceiros construam novos serviços sobre nossos dados (com consentimento do usuário), fomentando um ecossistema de inovação.</td>
+                                <td><span class="tech-badge" style="background: #22543d;">Platô da Produtividade</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Open Data</strong></td>
+                                <td><strong>Viabilidade Média.</strong> Poderíamos consumir dados abertos de saúde pública (e.g., calendários de vacinação, dados epidemiológicos) para fornecer informações relevantes aos usuários. A geração de Open Data a partir dos nossos próprios dados anonimizados é uma possibilidade futura para pesquisa acadêmica.</td>
+                                <td><span class="tech-badge" style="background: #744210;">Pico das Expectativas Infladas</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Blockchain</strong></td>
+                                <td><strong>Baixa Viabilidade (no momento).</strong> Embora o Blockchain possa oferecer um registro imutável de dados de saúde, a complexidade de implementação, os desafios de escalabilidade e a falta de uma necessidade clara de descentralização para o nosso caso de uso atual tornam o custo-benefício desfavorável. Reavaliaremos se a necessidade de portabilidade de dados entre múltiplos provedores de forma totalmente descentralizada se tornar crítica.</td>
+                                <td><span class="tech-badge" style="background: #742a2a;">Vale da Desilusão</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>IA Generativa</strong></td>
+                                <td><strong>Alta Viabilidade (para casos de uso específicos).</strong> Estamos explorando o uso de IA Generativa para criar um <strong>assistente de conversação (chatbot)</strong> mais humano e empático para o suporte ao usuário. Ele poderia ajudar os idosos a navegar no aplicativo, tirar dúvidas sobre suas medicações e até mesmo oferecer companhia, combatendo a solidão. A tecnologia já está madura o suficiente para prototipação.</td>
+                                <td><span class="tech-badge" style="background: #744210;">Pico das Expectativas Infladas</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="design-thinking-item animate-on-scroll">
+                <h3>5.4 Posicionamento Estratégico no Ecossistema Digital</h3>
+                <p>Nosso objetivo é posicionar o aplicativo não apenas como um produto, mas como o <strong>hub central da vida digital do idoso</strong>. A estratégia de integração é o caminho para alcançar essa visão em três horizontes temporais:</p>
+                
+                <div class="timeline-container">
+                    <div class="timeline-item">
+                        <h4><i class="fas fa-clock"></i> Curto Prazo (foco no usuário)</h4>
+                        <p>Construiremos a melhor experiência para o usuário final, resolvendo suas dores principais de organização e lembretes. A confiança e o engajamento gerados aqui são a base para o ecossistema.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h4><i class="fas fa-clock"></i> Médio Prazo (foco no parceiro)</h4>
+                        <p>Lançaremos nosso programa de parcerias e as primeiras APIs abertas (e.g., para farmácias). O objetivo é demonstrar o valor da integração e criar os primeiros casos de sucesso.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h4><i class="fas fa-clock"></i> Longo Prazo (foco na plataforma)</h4>
+                        <p>Expandiremos o leque de APIs e incentivaremos desenvolvedores terceiros a criar suas próprias soluções integradas ao nosso aplicativo. Imaginamos um "app store" de serviços para idosos, onde nosso produto atua como o sistema operacional, garantindo segurança, identidade e consentimento.</p>
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    <p><strong>Efeito de Rede:</strong> Ao nos tornarmos a plataforma de escolha para o ecossistema de "Age Tech", criamos um forte efeito de rede: mais usuários atraem mais parceiros, e mais parceiros criam mais valor para os usuários, solidificando nossa liderança e criando uma barreira de entrada robusta contra a concorrência.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusão -->
+    <section id="conclusao">
+        <div class="container">
+            <div class="section-title">
+                <h2><i class="fas fa-flag-checkered"></i> Conclusão</h2>
+                <p>Consolidação técnica e estratégica da Fase 4 do Tech Challenge</p>
+            </div>
+
+            <div class="design-thinking-item animate-on-scroll">
+                <div class="highlight-box">
+                    <p>As decisões técnicas e estratégicas da Fase 4 do Tech Challenge demonstram como a evolução da arquitetura, a governança estruturada, a estratégia de dados e IA, a implementação de DevSecOps e a integração com ecossistemas digitais trabalham de forma integrada para fortalecer o alicerce técnico do nosso produto.</p>
+                    
+                    <p style="margin-top: 1rem;">As escolhas realizadas refletem uma visão de longo prazo, garantindo que o aplicativo possa crescer de forma sustentável, segura e alinhada com as necessidades dos nossos usuários idosos e do mercado de Age Tech.</p>
+                    
+                    <p style="margin-top: 1rem;"><strong>Grupo 28 (84)</strong> - Tech Challenge Fase 4: IT Product Development</p>
+                </div>
+            </div>
+
+            <!-- Botão Voltar ao Início -->
+            <div class="back-button-container" style="margin: 40px 0; text-align: center;">
+                <a href="../index.html" class="back-button" style="display: inline-block; background: linear-gradient(135deg, #667eea, #764ba2); color: white; text-decoration: none; padding: 12px 24px; border-radius: 25px; font-weight: 500; transition: all 0.3s ease; font-size: 16px;">
+                    ← Voltar ao Início
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: #2d3748; color: white; padding: 2rem 0; text-align: center;">
+        <div class="container">
+            <p>&copy; 2024 Tech Challenge - Grupo 28 (84). Todos os direitos reservados.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">Fase 4: IT Product Development</p>
         </div>
     </footer>
+
+    <script src="../fase1/js/main.js"></script>
 </body>
 </html>
-
